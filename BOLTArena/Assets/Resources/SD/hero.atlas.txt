@@ -1,0 +1,1518 @@
+
+hero.png
+size: 436,108
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hero-arm_left
+  rotate: true
+  xy: 429, 78
+  size: 2, 5
+  orig: 2, 5
+  offset: 0, 0
+  index: -1
+hero-arm_right
+  rotate: true
+  xy: 215, 68
+  size: 2, 5
+  orig: 2, 5
+  offset: 0, 0
+  index: -1
+hero-blossom/hero-arm_left
+  rotate: false
+  xy: 357, 56
+  size: 2, 5
+  orig: 2, 5
+  offset: 0, 0
+  index: -1
+hero-blossom/hero-arm_right
+  rotate: true
+  xy: 319, 18
+  size: 2, 5
+  orig: 2, 5
+  offset: 0, 0
+  index: -1
+hero-blossom/hero-body
+  rotate: false
+  xy: 123, 41
+  size: 10, 11
+  orig: 10, 11
+  offset: 0, 0
+  index: -1
+hero-blossom/hero-cape
+  rotate: true
+  xy: 242, 21
+  size: 13, 4
+  orig: 13, 4
+  offset: 0, 0
+  index: -1
+hero-blossom/hero-cape_back
+  rotate: true
+  xy: 110, 18
+  size: 21, 10
+  orig: 21, 10
+  offset: 0, 0
+  index: -1
+hero-blossom/hero-face
+  rotate: false
+  xy: 239, 2
+  size: 11, 8
+  orig: 11, 8
+  offset: 0, 0
+  index: -1
+hero-blossom/hero-face02
+  rotate: true
+  xy: 429, 82
+  size: 11, 5
+  orig: 11, 5
+  offset: 0, 0
+  index: -1
+hero-blossom/hero-hair
+  rotate: false
+  xy: 48, 2
+  size: 22, 17
+  orig: 22, 17
+  offset: 0, 0
+  index: -1
+hero-blossom/hero-hair_back
+  rotate: true
+  xy: 365, 72
+  size: 23, 12
+  orig: 23, 12
+  offset: 0, 0
+  index: -1
+hero-blossom/hero-head
+  rotate: false
+  xy: 361, 56
+  size: 16, 14
+  orig: 16, 14
+  offset: 0, 0
+  index: -1
+hero-blossom/hero-leg_left
+  rotate: true
+  xy: 337, 13
+  size: 4, 6
+  orig: 4, 6
+  offset: 0, 0
+  index: -1
+hero-blossom/hero-leg_right
+  rotate: false
+  xy: 337, 19
+  size: 4, 6
+  orig: 4, 6
+  offset: 0, 0
+  index: -1
+hero-blossom/hero-weapon01
+  rotate: false
+  xy: 336, 83
+  size: 27, 12
+  orig: 27, 12
+  offset: 0, 0
+  index: -1
+hero-body
+  rotate: false
+  xy: 230, 23
+  size: 10, 11
+  orig: 10, 11
+  offset: 0, 0
+  index: -1
+hero-cape
+  rotate: false
+  xy: 248, 21
+  size: 13, 4
+  orig: 13, 4
+  offset: 0, 0
+  index: -1
+hero-cape_back
+  rotate: true
+  xy: 217, 2
+  size: 18, 9
+  orig: 18, 9
+  offset: 0, 0
+  index: -1
+hero-face
+  rotate: false
+  xy: 252, 2
+  size: 11, 8
+  orig: 11, 8
+  offset: 0, 0
+  index: -1
+hero-face02
+  rotate: false
+  xy: 357, 49
+  size: 11, 5
+  orig: 11, 5
+  offset: 0, 0
+  index: -1
+hero-hair
+  rotate: false
+  xy: 379, 79
+  size: 22, 17
+  orig: 22, 17
+  offset: 0, 0
+  index: -1
+hero-hair_back
+  rotate: true
+  xy: 89, 57
+  size: 23, 12
+  orig: 23, 12
+  offset: 0, 0
+  index: -1
+hero-head
+  rotate: false
+  xy: 81, 2
+  size: 16, 14
+  orig: 16, 14
+  offset: 0, 0
+  index: -1
+hero-leg_left
+  rotate: true
+  xy: 339, 31
+  size: 4, 6
+  orig: 4, 6
+  offset: 0, 0
+  index: -1
+hero-leg_right
+  rotate: false
+  xy: 349, 24
+  size: 4, 6
+  orig: 4, 6
+  offset: 0, 0
+  index: -1
+hero-shark/hero_shark-arm_left
+  rotate: false
+  xy: 332, 13
+  size: 3, 7
+  orig: 3, 7
+  offset: 0, 0
+  index: -1
+hero-shark/hero_shark-arm_right
+  rotate: true
+  xy: 326, 8
+  size: 3, 7
+  orig: 3, 7
+  offset: 0, 0
+  index: -1
+hero-shark/hero_shark-body
+  rotate: true
+  xy: 180, 65
+  size: 16, 11
+  orig: 16, 11
+  offset: 0, 0
+  index: -1
+hero-shark/hero_shark-face
+  rotate: false
+  xy: 265, 2
+  size: 11, 8
+  orig: 11, 8
+  offset: 0, 0
+  index: -1
+hero-shark/hero_shark-face02
+  rotate: false
+  xy: 379, 43
+  size: 11, 5
+  orig: 11, 5
+  offset: 0, 0
+  index: -1
+hero-shark/hero_shark-hair
+  rotate: true
+  xy: 60, 58
+  size: 20, 11
+  orig: 20, 11
+  offset: 0, 0
+  index: -1
+hero-shark/hero_shark-hat
+  rotate: false
+  xy: 162, 83
+  size: 29, 23
+  orig: 29, 23
+  offset: 0, 0
+  index: -1
+hero-shark/hero_shark-head
+  rotate: false
+  xy: 99, 2
+  size: 16, 14
+  orig: 16, 14
+  offset: 0, 0
+  index: -1
+hero-shark/hero_shark-leg_left
+  rotate: false
+  xy: 387, 21
+  size: 3, 4
+  orig: 3, 4
+  offset: 0, 0
+  index: -1
+hero-shark/hero_shark-leg_right
+  rotate: false
+  xy: 345, 13
+  size: 3, 4
+  orig: 3, 4
+  offset: 0, 0
+  index: -1
+hero-shark/hero_shark-weapon
+  rotate: false
+  xy: 408, 95
+  size: 26, 11
+  orig: 26, 11
+  offset: 0, 0
+  index: -1
+hero-weapon
+  rotate: false
+  xy: 249, 78
+  size: 27, 7
+  orig: 27, 7
+  offset: 0, 0
+  index: -1
+hero_aloha/hero_aloha-arm_left
+  rotate: true
+  xy: 427, 30
+  size: 4, 7
+  orig: 4, 7
+  offset: 0, 0
+  index: -1
+hero_aloha/hero_aloha-arm_right
+  rotate: true
+  xy: 427, 24
+  size: 4, 7
+  orig: 4, 7
+  offset: 0, 0
+  index: -1
+hero_aloha/hero_aloha-body
+  rotate: true
+  xy: 179, 55
+  size: 8, 12
+  orig: 8, 12
+  offset: 0, 0
+  index: -1
+hero_aloha/hero_aloha-face
+  rotate: true
+  xy: 294, 28
+  size: 11, 8
+  orig: 11, 8
+  offset: 0, 0
+  index: -1
+hero_aloha/hero_aloha-face02
+  rotate: true
+  xy: 427, 36
+  size: 13, 7
+  orig: 13, 7
+  offset: 0, 0
+  index: -1
+hero_aloha/hero_aloha-hair
+  rotate: true
+  xy: 73, 57
+  size: 23, 14
+  orig: 23, 14
+  offset: 0, 0
+  index: -1
+hero_aloha/hero_aloha-hair_back
+  rotate: false
+  xy: 103, 54
+  size: 23, 12
+  orig: 23, 12
+  offset: 0, 0
+  index: -1
+hero_aloha/hero_aloha-hat
+  rotate: false
+  xy: 64, 82
+  size: 29, 24
+  orig: 29, 24
+  offset: 0, 0
+  index: -1
+hero_aloha/hero_aloha-hat_back
+  rotate: false
+  xy: 306, 91
+  size: 28, 15
+  orig: 28, 15
+  offset: 0, 0
+  index: -1
+hero_aloha/hero_aloha-head
+  rotate: false
+  xy: 117, 2
+  size: 16, 14
+  orig: 16, 14
+  offset: 0, 0
+  index: -1
+hero_aloha/hero_aloha-leg_left
+  rotate: true
+  xy: 355, 23
+  size: 4, 6
+  orig: 4, 6
+  offset: 0, 0
+  index: -1
+hero_aloha/hero_aloha-leg_right
+  rotate: false
+  xy: 363, 21
+  size: 4, 6
+  orig: 4, 6
+  offset: 0, 0
+  index: -1
+hero_aloha/hero_aloha-weapon
+  rotate: true
+  xy: 34, 42
+  size: 14, 27
+  orig: 14, 27
+  offset: 0, 0
+  index: -1
+hero_choir/hero_choir-arm_left
+  rotate: true
+  xy: 415, 20
+  size: 4, 7
+  orig: 4, 7
+  offset: 0, 0
+  index: -1
+hero_choir/hero_choir-arm_right
+  rotate: false
+  xy: 319, 22
+  size: 4, 7
+  orig: 4, 7
+  offset: 0, 0
+  index: -1
+hero_choir/hero_choir-body
+  rotate: true
+  xy: 291, 2
+  size: 9, 10
+  orig: 9, 10
+  offset: 0, 0
+  index: -1
+hero_choir/hero_choir-cape
+  rotate: false
+  xy: 2, 2
+  size: 13, 5
+  orig: 13, 5
+  offset: 0, 0
+  index: -1
+hero_choir/hero_choir-cape_back
+  rotate: true
+  xy: 228, 2
+  size: 18, 9
+  orig: 18, 9
+  offset: 0, 0
+  index: -1
+hero_choir/hero_choir-face
+  rotate: false
+  xy: 304, 31
+  size: 11, 8
+  orig: 11, 8
+  offset: 0, 0
+  index: -1
+hero_choir/hero_choir-face02
+  rotate: false
+  xy: 288, 41
+  size: 13, 7
+  orig: 13, 7
+  offset: 0, 0
+  index: -1
+hero_choir/hero_choir-hair
+  rotate: false
+  xy: 103, 68
+  size: 23, 14
+  orig: 23, 14
+  offset: 0, 0
+  index: -1
+hero_choir/hero_choir-hair_back
+  rotate: false
+  xy: 73, 43
+  size: 23, 12
+  orig: 23, 12
+  offset: 0, 0
+  index: -1
+hero_choir/hero_choir-head
+  rotate: false
+  xy: 135, 41
+  size: 16, 14
+  orig: 16, 14
+  offset: 0, 0
+  index: -1
+hero_choir/hero_choir-leg_left
+  rotate: false
+  xy: 369, 23
+  size: 4, 6
+  orig: 4, 6
+  offset: 0, 0
+  index: -1
+hero_choir/hero_choir-leg_right
+  rotate: true
+  xy: 379, 21
+  size: 4, 6
+  orig: 4, 6
+  offset: 0, 0
+  index: -1
+hero_choir/hero_choir-weapon
+  rotate: true
+  xy: 277, 89
+  size: 17, 27
+  orig: 17, 27
+  offset: 0, 0
+  index: -1
+hero_choir/hero_choir_hat
+  rotate: false
+  xy: 193, 82
+  size: 28, 24
+  orig: 28, 24
+  offset: 0, 0
+  index: -1
+hero_choir/hero_choir_hatback
+  rotate: false
+  xy: 336, 97
+  size: 34, 9
+  orig: 34, 9
+  offset: 0, 0
+  index: -1
+hero_choir/shadow
+  rotate: true
+  xy: 63, 42
+  size: 14, 8
+  orig: 14, 8
+  offset: 0, 0
+  index: -1
+hero_enemy/hero_enemy-hair
+  rotate: false
+  xy: 379, 60
+  size: 22, 17
+  orig: 22, 17
+  offset: 0, 0
+  index: -1
+hero_enemy/hero_enemy-hair_back
+  rotate: true
+  xy: 122, 18
+  size: 21, 10
+  orig: 21, 10
+  offset: 0, 0
+  index: -1
+hero_fighter/hero_fighter-arm_left
+  rotate: true
+  xy: 335, 8
+  size: 3, 6
+  orig: 3, 6
+  offset: 0, 0
+  index: -1
+hero_fighter/hero_fighter-arm_right
+  rotate: true
+  xy: 392, 19
+  size: 3, 6
+  orig: 3, 6
+  offset: 0, 0
+  index: -1
+hero_fighter/hero_fighter-body
+  rotate: true
+  xy: 254, 12
+  size: 7, 10
+  orig: 7, 10
+  offset: 0, 0
+  index: -1
+hero_fighter/hero_fighter-face
+  rotate: true
+  xy: 299, 15
+  size: 11, 8
+  orig: 11, 8
+  offset: 0, 0
+  index: -1
+hero_fighter/hero_fighter-face02
+  rotate: true
+  xy: 313, 5
+  size: 11, 5
+  orig: 11, 5
+  offset: 0, 0
+  index: -1
+hero_fighter/hero_fighter-hair
+  rotate: false
+  xy: 403, 59
+  size: 22, 17
+  orig: 22, 17
+  offset: 0, 0
+  index: -1
+hero_fighter/hero_fighter-hair_back
+  rotate: true
+  xy: 82, 18
+  size: 23, 12
+  orig: 23, 12
+  offset: 0, 0
+  index: -1
+hero_fighter/hero_fighter-hairband
+  rotate: false
+  xy: 193, 69
+  size: 20, 11
+  orig: 20, 11
+  offset: 0, 0
+  index: -1
+hero_fighter/hero_fighter-head
+  rotate: false
+  xy: 194, 42
+  size: 16, 14
+  orig: 16, 14
+  offset: 0, 0
+  index: -1
+hero_fighter/hero_fighter-leg_left
+  rotate: true
+  xy: 337, 27
+  size: 2, 4
+  orig: 2, 4
+  offset: 0, 0
+  index: -1
+hero_fighter/hero_fighter-leg_right
+  rotate: true
+  xy: 349, 20
+  size: 2, 4
+  orig: 2, 4
+  offset: 0, 0
+  index: -1
+hero_fighter/hero_fighter-weapon
+  rotate: false
+  xy: 278, 78
+  size: 27, 9
+  orig: 27, 9
+  offset: 0, 0
+  index: -1
+hero_halloween/hero_halloween_arm_left
+  rotate: true
+  xy: 199, 2
+  size: 6, 7
+  orig: 6, 7
+  offset: 0, 0
+  index: -1
+hero_halloween/hero_halloween_arm_right
+  rotate: true
+  xy: 208, 2
+  size: 6, 7
+  orig: 6, 7
+  offset: 0, 0
+  index: -1
+hero_halloween/hero_halloween_body
+  rotate: true
+  xy: 67, 21
+  size: 19, 13
+  orig: 19, 13
+  offset: 0, 0
+  index: -1
+hero_halloween/hero_halloween_face
+  rotate: true
+  xy: 303, 2
+  size: 11, 8
+  orig: 11, 8
+  offset: 0, 0
+  index: -1
+hero_halloween/hero_halloween_face02
+  rotate: false
+  xy: 303, 41
+  size: 13, 7
+  orig: 13, 7
+  offset: 0, 0
+  index: -1
+hero_halloween/hero_halloween_hair_back
+  rotate: false
+  xy: 98, 41
+  size: 23, 11
+  orig: 23, 11
+  offset: 0, 0
+  index: -1
+hero_halloween/hero_halloween_hat
+  rotate: false
+  xy: 2, 79
+  size: 30, 27
+  orig: 30, 27
+  offset: 0, 0
+  index: -1
+hero_halloween/hero_halloween_head
+  rotate: false
+  xy: 200, 26
+  size: 16, 14
+  orig: 16, 14
+  offset: 0, 0
+  index: -1
+hero_halloween/hero_halloween_leg_left
+  rotate: true
+  xy: 330, 31
+  size: 4, 7
+  orig: 4, 7
+  offset: 0, 0
+  index: -1
+hero_halloween/hero_halloween_leg_right
+  rotate: false
+  xy: 325, 22
+  size: 4, 7
+  orig: 4, 7
+  offset: 0, 0
+  index: -1
+hero_halloween/hero_halloween_weapon
+  rotate: false
+  xy: 223, 68
+  size: 24, 13
+  orig: 24, 13
+  offset: 0, 0
+  index: -1
+hero_hanbok/hero_hanbok-arm_left
+  rotate: false
+  xy: 17, 2
+  size: 3, 5
+  orig: 3, 5
+  offset: 0, 0
+  index: -1
+hero_hanbok/hero_hanbok-arm_right
+  rotate: false
+  xy: 320, 2
+  size: 3, 5
+  orig: 3, 5
+  offset: 0, 0
+  index: -1
+hero_hanbok/hero_hanbok-body
+  rotate: false
+  xy: 345, 51
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+hero_hanbok/hero_hanbok-face
+  rotate: true
+  xy: 309, 18
+  size: 11, 8
+  orig: 11, 8
+  offset: 0, 0
+  index: -1
+hero_hanbok/hero_hanbok-face02
+  rotate: false
+  xy: 320, 44
+  size: 11, 5
+  orig: 11, 5
+  offset: 0, 0
+  index: -1
+hero_hanbok/hero_hanbok-hair
+  rotate: true
+  xy: 177, 5
+  size: 20, 9
+  orig: 20, 9
+  offset: 0, 0
+  index: -1
+hero_hanbok/hero_hanbok-hair_back
+  rotate: false
+  xy: 155, 69
+  size: 23, 12
+  orig: 23, 12
+  offset: 0, 0
+  index: -1
+hero_hanbok/hero_hanbok-hat
+  rotate: true
+  xy: 49, 21
+  size: 19, 16
+  orig: 19, 16
+  offset: 0, 0
+  index: -1
+hero_hanbok/hero_hanbok-hat_back
+  rotate: false
+  xy: 22, 2
+  size: 24, 17
+  orig: 24, 17
+  offset: 0, 0
+  index: -1
+hero_hanbok/hero_hanbok-head
+  rotate: false
+  xy: 199, 10
+  size: 16, 14
+  orig: 16, 14
+  offset: 0, 0
+  index: -1
+hero_hanbok/hero_hanbok-leg_left
+  rotate: true
+  xy: 363, 17
+  size: 2, 4
+  orig: 2, 4
+  offset: 0, 0
+  index: -1
+hero_hanbok/hero_hanbok-leg_right
+  rotate: false
+  xy: 387, 15
+  size: 2, 4
+  orig: 2, 4
+  offset: 0, 0
+  index: -1
+hero_hanbok/hero_hanbok-weapon
+  rotate: true
+  xy: 403, 78
+  size: 15, 24
+  orig: 15, 24
+  offset: 0, 0
+  index: -1
+hero_magician/hero_magician-arm_left
+  rotate: false
+  xy: 375, 24
+  size: 2, 5
+  orig: 2, 5
+  offset: 0, 0
+  index: -1
+hero_magician/hero_magician-arm_right
+  rotate: false
+  xy: 375, 17
+  size: 2, 5
+  orig: 2, 5
+  offset: 0, 0
+  index: -1
+hero_magician/hero_magician-body
+  rotate: true
+  xy: 320, 51
+  size: 13, 10
+  orig: 13, 10
+  offset: 0, 0
+  index: -1
+hero_magician/hero_magician-body_back
+  rotate: false
+  xy: 415, 33
+  size: 10, 4
+  orig: 10, 4
+  offset: 0, 0
+  index: -1
+hero_magician/hero_magician-face
+  rotate: true
+  xy: 392, 37
+  size: 11, 8
+  orig: 11, 8
+  offset: 0, 0
+  index: -1
+hero_magician/hero_magician-face02
+  rotate: false
+  xy: 333, 44
+  size: 11, 5
+  orig: 11, 5
+  offset: 0, 0
+  index: -1
+hero_magician/hero_magician-hair
+  rotate: false
+  xy: 379, 50
+  size: 22, 8
+  orig: 22, 8
+  offset: 0, 0
+  index: -1
+hero_magician/hero_magician-hair_back
+  rotate: false
+  xy: 154, 55
+  size: 23, 12
+  orig: 23, 12
+  offset: 0, 0
+  index: -1
+hero_magician/hero_magician-hat
+  rotate: true
+  xy: 2, 42
+  size: 35, 20
+  orig: 35, 20
+  offset: 0, 0
+  index: -1
+hero_magician/hero_magician-hat_back
+  rotate: true
+  xy: 24, 43
+  size: 34, 8
+  orig: 34, 8
+  offset: 0, 0
+  index: -1
+hero_magician/hero_magician-head
+  rotate: false
+  xy: 212, 42
+  size: 16, 14
+  orig: 16, 14
+  offset: 0, 0
+  index: -1
+hero_magician/hero_magician-leg_left
+  rotate: true
+  xy: 369, 11
+  size: 2, 4
+  orig: 2, 4
+  offset: 0, 0
+  index: -1
+hero_magician/hero_magician-leg_right
+  rotate: false
+  xy: 375, 11
+  size: 2, 4
+  orig: 2, 4
+  offset: 0, 0
+  index: -1
+hero_magician/hero_magician-scarf
+  rotate: false
+  xy: 379, 27
+  size: 11, 4
+  orig: 11, 4
+  offset: 0, 0
+  index: -1
+hero_magician/hero_magician-scarf_back
+  rotate: true
+  xy: 215, 72
+  size: 8, 6
+  orig: 8, 6
+  offset: 0, 0
+  index: -1
+hero_magician/hero_magician-weapon
+  rotate: false
+  xy: 249, 66
+  size: 26, 10
+  orig: 26, 10
+  offset: 0, 0
+  index: -1
+hero_mechagic/hero_mechagic-arm_left
+  rotate: false
+  xy: 350, 13
+  size: 2, 5
+  orig: 2, 5
+  offset: 0, 0
+  index: -1
+hero_mechagic/hero_mechagic-arm_right
+  rotate: true
+  xy: 354, 13
+  size: 2, 5
+  orig: 2, 5
+  offset: 0, 0
+  index: -1
+hero_mechagic/hero_mechagic-body
+  rotate: true
+  xy: 332, 51
+  size: 10, 11
+  orig: 10, 11
+  offset: 0, 0
+  index: -1
+hero_mechagic/hero_mechagic-cape
+  rotate: true
+  xy: 293, 13
+  size: 13, 4
+  orig: 13, 4
+  offset: 0, 0
+  index: -1
+hero_mechagic/hero_mechagic-cape_back
+  rotate: false
+  xy: 248, 39
+  size: 18, 9
+  orig: 18, 9
+  offset: 0, 0
+  index: -1
+hero_mechagic/hero_mechagic-face
+  rotate: false
+  xy: 402, 36
+  size: 11, 8
+  orig: 11, 8
+  offset: 0, 0
+  index: -1
+hero_mechagic/hero_mechagic-face02
+  rotate: false
+  xy: 402, 19
+  size: 11, 5
+  orig: 11, 5
+  offset: 0, 0
+  index: -1
+hero_mechagic/hero_mechagic-hair
+  rotate: true
+  xy: 96, 18
+  size: 21, 12
+  orig: 21, 12
+  offset: 0, 0
+  index: -1
+hero_mechagic/hero_mechagic-hair_back
+  rotate: false
+  xy: 153, 41
+  size: 23, 12
+  orig: 23, 12
+  offset: 0, 0
+  index: -1
+hero_mechagic/hero_mechagic-hat
+  rotate: false
+  xy: 95, 84
+  size: 31, 22
+  orig: 31, 22
+  offset: 0, 0
+  index: -1
+hero_mechagic/hero_mechagic-hat_back
+  rotate: false
+  xy: 215, 58
+  size: 13, 8
+  orig: 13, 8
+  offset: 0, 0
+  index: -1
+hero_mechagic/hero_mechagic-head
+  rotate: false
+  xy: 230, 52
+  size: 16, 14
+  orig: 16, 14
+  offset: 0, 0
+  index: -1
+hero_mechagic/hero_mechagic-leg_left
+  rotate: false
+  xy: 343, 5
+  size: 4, 6
+  orig: 4, 6
+  offset: 0, 0
+  index: -1
+hero_mechagic/hero_mechagic-leg_right
+  rotate: true
+  xy: 355, 17
+  size: 4, 6
+  orig: 4, 6
+  offset: 0, 0
+  index: -1
+hero_mechagic/hero_mechagic-scouter
+  rotate: true
+  xy: 285, 28
+  size: 9, 7
+  orig: 9, 7
+  offset: 0, 0
+  index: -1
+hero_mechagic/hero_mechagic-staff
+  rotate: true
+  xy: 427, 51
+  size: 25, 7
+  orig: 25, 7
+  offset: 0, 0
+  index: -1
+hero_mechagic/hero_mechagic-weapon
+  rotate: false
+  xy: 277, 66
+  size: 26, 10
+  orig: 26, 10
+  offset: 0, 0
+  index: -1
+hero_mechanic/hero_mechanic-arm_left
+  rotate: false
+  xy: 361, 10
+  size: 2, 5
+  orig: 2, 5
+  offset: 0, 0
+  index: -1
+hero_mechanic/hero_mechanic-arm_right
+  rotate: false
+  xy: 365, 10
+  size: 2, 5
+  orig: 2, 5
+  offset: 0, 0
+  index: -1
+hero_mechanic/hero_mechanic-body
+  rotate: false
+  xy: 248, 27
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+hero_mechanic/hero_mechanic-face
+  rotate: true
+  xy: 346, 38
+  size: 11, 8
+  orig: 11, 8
+  offset: 0, 0
+  index: -1
+hero_mechanic/hero_mechanic-face02
+  rotate: false
+  xy: 318, 37
+  size: 11, 5
+  orig: 11, 5
+  offset: 0, 0
+  index: -1
+hero_mechanic/hero_mechanic-hair
+  rotate: true
+  xy: 72, 2
+  size: 17, 7
+  orig: 17, 7
+  offset: 0, 0
+  index: -1
+hero_mechanic/hero_mechanic-hair_back
+  rotate: false
+  xy: 134, 27
+  size: 23, 12
+  orig: 23, 12
+  offset: 0, 0
+  index: -1
+hero_mechanic/hero_mechanic-head
+  rotate: false
+  xy: 248, 50
+  size: 16, 14
+  orig: 16, 14
+  offset: 0, 0
+  index: -1
+hero_mechanic/hero_mechanic-helmet
+  rotate: false
+  xy: 223, 83
+  size: 24, 23
+  orig: 24, 23
+  offset: 0, 0
+  index: -1
+hero_mechanic/hero_mechanic-leg_left
+  rotate: true
+  xy: 379, 11
+  size: 2, 4
+  orig: 2, 4
+  offset: 0, 0
+  index: -1
+hero_mechanic/hero_mechanic-leg_right
+  rotate: true
+  xy: 385, 11
+  size: 2, 4
+  orig: 2, 4
+  offset: 0, 0
+  index: -1
+hero_mechanic/hero_mechanic-weapon
+  rotate: false
+  xy: 334, 63
+  size: 25, 7
+  orig: 25, 7
+  offset: 0, 0
+  index: -1
+hero_pharaoh/hero_pharaoh-arm_left
+  rotate: true
+  xy: 361, 6
+  size: 2, 5
+  orig: 2, 5
+  offset: 0, 0
+  index: -1
+hero_pharaoh/hero_pharaoh-arm_right
+  rotate: true
+  xy: 361, 2
+  size: 2, 5
+  orig: 2, 5
+  offset: 0, 0
+  index: -1
+hero_pharaoh/hero_pharaoh-body
+  rotate: false
+  xy: 260, 27
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+hero_pharaoh/hero_pharaoh-face
+  rotate: false
+  xy: 356, 39
+  size: 11, 8
+  orig: 11, 8
+  offset: 0, 0
+  index: -1
+hero_pharaoh/hero_pharaoh-face02
+  rotate: false
+  xy: 331, 37
+  size: 11, 5
+  orig: 11, 5
+  offset: 0, 0
+  index: -1
+hero_pharaoh/hero_pharaoh-hair
+  rotate: false
+  xy: 193, 58
+  size: 20, 9
+  orig: 20, 9
+  offset: 0, 0
+  index: -1
+hero_pharaoh/hero_pharaoh-hair_back
+  rotate: true
+  xy: 135, 2
+  size: 23, 12
+  orig: 23, 12
+  offset: 0, 0
+  index: -1
+hero_pharaoh/hero_pharaoh-hat
+  rotate: false
+  xy: 159, 27
+  size: 20, 12
+  orig: 20, 12
+  offset: 0, 0
+  index: -1
+hero_pharaoh/hero_pharaoh-hat_back
+  rotate: false
+  xy: 370, 44
+  size: 7, 10
+  orig: 7, 10
+  offset: 0, 0
+  index: -1
+hero_pharaoh/hero_pharaoh-hat_back2
+  rotate: true
+  xy: 415, 39
+  size: 5, 10
+  orig: 5, 10
+  offset: 0, 0
+  index: -1
+hero_pharaoh/hero_pharaoh-head
+  rotate: false
+  xy: 266, 50
+  size: 16, 14
+  orig: 16, 14
+  offset: 0, 0
+  index: -1
+hero_pharaoh/hero_pharaoh-leg_left
+  rotate: true
+  xy: 391, 9
+  size: 2, 4
+  orig: 2, 4
+  offset: 0, 0
+  index: -1
+hero_pharaoh/hero_pharaoh-leg_right
+  rotate: true
+  xy: 397, 9
+  size: 2, 4
+  orig: 2, 4
+  offset: 0, 0
+  index: -1
+hero_pharaoh/hero_pharaoh-staff
+  rotate: true
+  xy: 415, 26
+  size: 5, 10
+  orig: 5, 10
+  offset: 0, 0
+  index: -1
+hero_pharaoh/hero_pharaoh-weapon
+  rotate: false
+  xy: 336, 72
+  size: 27, 9
+  orig: 27, 9
+  offset: 0, 0
+  index: -1
+hero_pirate/hero_pirate-arm_left
+  rotate: false
+  xy: 369, 15
+  size: 4, 6
+  orig: 4, 6
+  offset: 0, 0
+  index: -1
+hero_pirate/hero_pirate-arm_right
+  rotate: true
+  xy: 379, 15
+  size: 4, 6
+  orig: 4, 6
+  offset: 0, 0
+  index: -1
+hero_pirate/hero_pirate-body
+  rotate: true
+  xy: 272, 28
+  size: 9, 11
+  orig: 9, 11
+  offset: 0, 0
+  index: -1
+hero_pirate/hero_pirate-body_back
+  rotate: true
+  xy: 331, 22
+  size: 7, 4
+  orig: 7, 4
+  offset: 0, 0
+  index: -1
+hero_pirate/hero_pirate-face
+  rotate: true
+  xy: 191, 27
+  size: 12, 7
+  orig: 12, 7
+  offset: 0, 0
+  index: -1
+hero_pirate/hero_pirate-face02
+  rotate: false
+  xy: 239, 12
+  size: 13, 7
+  orig: 13, 7
+  offset: 0, 0
+  index: -1
+hero_pirate/hero_pirate-hair
+  rotate: true
+  xy: 188, 5
+  size: 20, 9
+  orig: 20, 9
+  offset: 0, 0
+  index: -1
+hero_pirate/hero_pirate-hair_back
+  rotate: true
+  xy: 149, 2
+  size: 23, 12
+  orig: 23, 12
+  offset: 0, 0
+  index: -1
+hero_pirate/hero_pirate-hat
+  rotate: true
+  xy: 2, 9
+  size: 31, 18
+  orig: 31, 18
+  offset: 0, 0
+  index: -1
+hero_pirate/hero_pirate-head
+  rotate: false
+  xy: 178, 41
+  size: 14, 12
+  orig: 14, 12
+  offset: 0, 0
+  index: -1
+hero_pirate/hero_pirate-leg_left
+  rotate: true
+  xy: 403, 9
+  size: 2, 4
+  orig: 2, 4
+  offset: 0, 0
+  index: -1
+hero_pirate/hero_pirate-leg_right
+  rotate: true
+  xy: 409, 9
+  size: 2, 4
+  orig: 2, 4
+  offset: 0, 0
+  index: -1
+hero_pirate/hero_pirate-weapon
+  rotate: false
+  xy: 305, 66
+  size: 27, 6
+  orig: 27, 6
+  offset: 0, 0
+  index: -1
+hero_soccer/hero_soccer-arm_left
+  rotate: false
+  xy: 320, 9
+  size: 4, 7
+  orig: 4, 7
+  offset: 0, 0
+  index: -1
+hero_soccer/hero_soccer-arm_right
+  rotate: false
+  xy: 326, 13
+  size: 4, 7
+  orig: 4, 7
+  offset: 0, 0
+  index: -1
+hero_soccer/hero_soccer-body
+  rotate: false
+  xy: 181, 27
+  size: 8, 12
+  orig: 8, 12
+  offset: 0, 0
+  index: -1
+hero_soccer/hero_soccer-face
+  rotate: true
+  xy: 369, 31
+  size: 11, 8
+  orig: 11, 8
+  offset: 0, 0
+  index: -1
+hero_soccer/hero_soccer-face02
+  rotate: true
+  xy: 266, 12
+  size: 13, 7
+  orig: 13, 7
+  offset: 0, 0
+  index: -1
+hero_soccer/hero_soccer-hair
+  rotate: false
+  xy: 34, 58
+  size: 24, 20
+  orig: 24, 20
+  offset: 0, 0
+  index: -1
+hero_soccer/hero_soccer-hat
+  rotate: false
+  xy: 34, 80
+  size: 28, 26
+  orig: 28, 26
+  offset: 0, 0
+  index: -1
+hero_soccer/hero_soccer-head
+  rotate: false
+  xy: 284, 50
+  size: 16, 14
+  orig: 16, 14
+  offset: 0, 0
+  index: -1
+hero_soccer/hero_soccer-leg_left
+  rotate: true
+  xy: 391, 13
+  size: 4, 6
+  orig: 4, 6
+  offset: 0, 0
+  index: -1
+hero_soccer/hero_soccer-leg_right
+  rotate: true
+  xy: 399, 13
+  size: 4, 6
+  orig: 4, 6
+  offset: 0, 0
+  index: -1
+hero_soccer/hero_soccer-weapon
+  rotate: true
+  xy: 249, 87
+  size: 19, 26
+  orig: 19, 26
+  offset: 0, 0
+  index: -1
+hero_winterfairy/arm_left_winterfairy
+  rotate: true
+  xy: 325, 2
+  size: 4, 7
+  orig: 4, 7
+  offset: 0, 0
+  index: -1
+hero_winterfairy/arm_right_winterfairy
+  rotate: true
+  xy: 334, 2
+  size: 4, 7
+  orig: 4, 7
+  offset: 0, 0
+  index: -1
+hero_winterfairy/body_winterfairy
+  rotate: true
+  xy: 278, 2
+  size: 9, 11
+  orig: 9, 11
+  offset: 0, 0
+  index: -1
+hero_winterfairy/cape_back_winterfairy
+  rotate: false
+  xy: 403, 46
+  size: 22, 11
+  orig: 22, 11
+  offset: 0, 0
+  index: -1
+hero_winterfairy/cape_winterfairy
+  rotate: false
+  xy: 317, 31
+  size: 11, 4
+  orig: 11, 4
+  offset: 0, 0
+  index: -1
+hero_winterfairy/face1_winterfairy
+  rotate: false
+  xy: 379, 33
+  size: 11, 8
+  orig: 11, 8
+  offset: 0, 0
+  index: -1
+hero_winterfairy/face2_winterfairy
+  rotate: true
+  xy: 275, 13
+  size: 13, 7
+  orig: 13, 7
+  offset: 0, 0
+  index: -1
+hero_winterfairy/hair_back_winterfairy
+  rotate: true
+  xy: 163, 2
+  size: 23, 12
+  orig: 23, 12
+  offset: 0, 0
+  index: -1
+hero_winterfairy/hair_winterfairy
+  rotate: false
+  xy: 128, 85
+  size: 32, 21
+  orig: 32, 21
+  offset: 0, 0
+  index: -1
+hero_winterfairy/head_winterfairy
+  rotate: false
+  xy: 302, 50
+  size: 16, 14
+  orig: 16, 14
+  offset: 0, 0
+  index: -1
+hero_winterfairy/leg_left_winterfairy
+  rotate: true
+  xy: 407, 13
+  size: 4, 6
+  orig: 4, 6
+  offset: 0, 0
+  index: -1
+hero_winterfairy/leg_right_winterfairy
+  rotate: true
+  xy: 415, 14
+  size: 4, 6
+  orig: 4, 6
+  offset: 0, 0
+  index: -1
+hero_winterfairy/weapon_winterfairy
+  rotate: false
+  xy: 307, 74
+  size: 27, 15
+  orig: 27, 15
+  offset: 0, 0
+  index: -1
+hero_winterfairy/wing_winterfairy
+  rotate: false
+  xy: 372, 98
+  size: 34, 8
+  orig: 34, 8
+  offset: 0, 0
+  index: -1
+hero_winterprince/hero-winterprince_arm_left
+  rotate: true
+  xy: 347, 32
+  size: 4, 7
+  orig: 4, 7
+  offset: 0, 0
+  index: -1
+hero_winterprince/hero-winterprince_arm_right
+  rotate: false
+  xy: 343, 22
+  size: 4, 7
+  orig: 4, 7
+  offset: 0, 0
+  index: -1
+hero_winterprince/hero-winterprince_body
+  rotate: true
+  xy: 356, 29
+  size: 8, 11
+  orig: 8, 11
+  offset: 0, 0
+  index: -1
+hero_winterprince/hero-winterprince_cape
+  rotate: true
+  xy: 218, 22
+  size: 18, 10
+  orig: 18, 10
+  offset: 0, 0
+  index: -1
+hero_winterprince/hero-winterprince_cape_back
+  rotate: false
+  xy: 268, 39
+  size: 18, 9
+  orig: 18, 9
+  offset: 0, 0
+  index: -1
+hero_winterprince/hero-winterprince_crown
+  rotate: true
+  xy: 392, 24
+  size: 11, 8
+  orig: 11, 8
+  offset: 0, 0
+  index: -1
+hero_winterprince/hero-winterprince_face1
+  rotate: false
+  xy: 402, 26
+  size: 11, 8
+  orig: 11, 8
+  offset: 0, 0
+  index: -1
+hero_winterprince/hero-winterprince_face2
+  rotate: true
+  xy: 284, 13
+  size: 13, 7
+  orig: 13, 7
+  offset: 0, 0
+  index: -1
+hero_winterprince/hero-winterprince_hair
+  rotate: false
+  xy: 22, 21
+  size: 25, 19
+  orig: 25, 19
+  offset: 0, 0
+  index: -1
+hero_winterprince/hero-winterprince_hair_back
+  rotate: false
+  xy: 128, 57
+  size: 24, 12
+  orig: 24, 12
+  offset: 0, 0
+  index: -1
+hero_winterprince/hero-winterprince_head
+  rotate: false
+  xy: 230, 36
+  size: 16, 14
+  orig: 16, 14
+  offset: 0, 0
+  index: -1
+hero_winterprince/hero-winterprince_leg_left
+  rotate: false
+  xy: 349, 5
+  size: 4, 6
+  orig: 4, 6
+  offset: 0, 0
+  index: -1
+hero_winterprince/hero-winterprince_leg_right
+  rotate: false
+  xy: 355, 5
+  size: 4, 6
+  orig: 4, 6
+  offset: 0, 0
+  index: -1
+hero_winterprince/hero-winterprince_weapon
+  rotate: false
+  xy: 128, 71
+  size: 25, 12
+  orig: 25, 12
+  offset: 0, 0
+  index: -1

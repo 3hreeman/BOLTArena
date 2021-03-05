@@ -1,0 +1,91 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using Spine;
+using Spine.Unity;
+using UnityEngine;
+
+public class SpineMechanimController : MonoBehaviour {
+    public Dictionary<string, string> animDict = new Dictionary<string, string>() {
+        {"idle", "idle"}, {"attack", "attack"}, {"move", "move"}, {"skill", "skill"}
+    }; 
+    
+    public string m_resKey;
+    public SkeletonMecanim m_mechanim;
+    public MeshRenderer m_meshRenderer;
+    public Vector2 org_scale;
+    public Vector2 dir_scale;
+    private bool isInit = false;
+    List<Bone> m_boneList = new List<Bone>();
+    public Vector2 m_bound;
+    public void init(string resKey, Action act) {
+        m_resKey = resKey;
+        atkAction = act;
+    }
+    void Start() {
+        m_mechanim = GetComponent<SkeletonMecanim>();
+        m_meshRenderer = GetComponent<MeshRenderer>();
+        m_boneList = m_mechanim.skeleton.Bones.ToList();
+        dir_scale = org_scale = Vector3.one;
+        m_bound = m_meshRenderer.bounds.size;
+        isInit = true;
+    }
+
+    
+    
+    private Action atkAction = null;
+    public Vector3 GetUIPos() {
+        var result = transform.position;
+        result.y += m_bound.y;
+        return result;
+    }
+
+    public void SetDir(int dir) {
+        if (isInit == false) {
+            return;
+        }
+        dir_scale = org_scale;
+        dir_scale.x = dir * dir_scale.x;
+        m_mechanim.skeleton.SetLocalScale(dir_scale);
+    }
+    
+    IEnumerator hitCoroutine = null;
+
+    public void PlayHitEffect() {
+        if(gameObject.activeSelf == false) {
+            return;
+        }
+        if (hitCoroutine != null) {
+            StopCoroutine(hitCoroutine);
+            EndHitEffect();
+        }
+        hitCoroutine = HitEffect();
+        StartCoroutine(hitCoroutine);
+    }
+
+    readonly float hit_eff_time = 0.25f;
+    IEnumerator HitEffect() {
+        float time = 0;
+        var new_pos = transform.position;
+        foreach (var bone in m_boneList) {
+            bone.Skeleton.SetColor(new Color(1, 0, 0, 1f));
+        }
+        yield return new WaitForSeconds(hit_eff_time);
+
+        EndHitEffect();
+    }
+    
+    void EndHitEffect() {
+        foreach (var bone in m_boneList) {
+            bone.Skeleton.SetColor(new Color(1, 1, 1, 1));
+        }
+        if(hitCoroutine != null) {
+            StopCoroutine(hitCoroutine);
+        }
+        // anim_state.SetAnimation(0, "idle", true);
+        hitCoroutine = null;
+    }
+
+}
