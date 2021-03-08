@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Bolt;
 using Bolt.Matchmaking;
 using Bolt.Photon;
@@ -6,11 +8,14 @@ using UdpKit;
 using UdpKit.Platform.Photon;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = System.Random;
 
 public class StartMain : Bolt.GlobalEventListener {
 	public static bool IsInit = false;
+	private Dictionary<string, string> nameSkinDict = new Dictionary<string, string>() { {"Fighter", "Fighter"}, {"Halloween", "Halloween"}, {"Magician", "Magician"},
+		{"Aloha", "Aloha"}, {"Blossom", "Blossom"}, {"Choir", "Choir"}, {"Mechagic", "Mechagic"}, {"Pirate", "Pirate"}, {"Pharaoh", "Pharaoh"}, {"Sulbim", "Sulbim"}};
 	
-    private enum State {
+	private enum State {
 			SelectMode,
 			SelectMap,
 			SelectRoom,
@@ -81,7 +86,9 @@ public class StartMain : Bolt.GlobalEventListener {
 					var label = string.Format("Join: {0} | {1}/{2}", matchName, photonSession.ConnectionsCurrent, photonSession.ConnectionsMax);
 
 					if (ExpandButton(label)) {
-						BoltMatchmaking.JoinSession(photonSession);
+						int idx = UnityEngine.Random.Range(0, nameSkinDict.Count);
+						var data = nameSkinDict.ToList()[idx];
+						BoltMatchmaking.JoinSession(photonSession, new PlayerData() { m_playerName =  data.Key, m_resKey = data.Value });
 						currentState = State.Started;
 					}
 				}

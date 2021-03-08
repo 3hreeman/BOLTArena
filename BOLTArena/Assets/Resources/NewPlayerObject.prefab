@@ -157,6 +157,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_pad: {fileID: 0}
+  DirectionView: 0
+  HpView: 0
 --- !u!114 &754963178526588064
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -60,9 +60,9 @@ public partial class Player : IDisposable
 		}
 	}
 
-	public void InstantiateEntity()
+	public void InstantiateEntity(PlayerData data)
 	{
-		entity = BoltNetwork.Instantiate(BoltPrefabs.PlayerObject, RandomPosition(), Quaternion.identity);
+		entity = BoltNetwork.Instantiate(BoltPrefabs.PlayerObject, data, RandomPosition(), Quaternion.identity);
 
 		state.Name = name;
 
@@ -109,7 +109,6 @@ partial class Player
 	static Vector3 RandomPosition() {
 		float half_height = Camera.main.orthographicSize;
 		float half_width = half_height * Camera.main.aspect;
-		Debug.Log(Camera.main.aspect + " :: " + half_width + " , "+ half_height);
 		float x = UE.Random.Range(-half_width, half_width);
 		float y = UE.Random.Range(-half_height, half_height);
 		return new Vector3(x, y, y);

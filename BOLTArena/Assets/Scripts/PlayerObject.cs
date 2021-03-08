@@ -14,7 +14,7 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
     private bool isRun;
     private bool isAttack;
 
-    private float MOVE_SPD = 1;
+    private float MOVE_SPD = 3;
     private CharacterController m_charController;
 
     private float nextAtkTime = 0;
@@ -85,6 +85,9 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
         //최초 동기화가 이루어진다음 처리할 내용
         state.SetTransforms(state.Transform, transform);
         state.SetAnimator(GetComponentInChildren<Animator>());
+        var data = entity.AttachToken as PlayerData;
+        Debug.Log("attached token = "+ data.m_playerName+ " / " +data.m_resKey);
+        m_spine.init(data.m_resKey, null);
     }
 
     public override void SimulateOwner() {

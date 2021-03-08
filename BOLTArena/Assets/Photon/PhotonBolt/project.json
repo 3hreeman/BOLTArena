@@ -89,6 +89,7 @@
           "Name": "Transform",
           "Enabled": true,
           "Expanded": true,
+          "ReplicationMode": 1,
           "Priority": 1,
           "PropertyType": {
             "$type": "Bolt.Compiler.PropertyTypeTransform, bolt.compiler",
@@ -158,11 +159,10 @@
           },
           "AssetSettings": {
             "$type": "Bolt.Compiler.PropertyStateSettings, bolt.compiler",
-            "SmoothingAlgorithm": 2,
             "ExtrapolationErrorTolerance": 0.25,
             "_ExtrapolationCorrectionFrames": 6,
             "ExtrapolationMaxFrames": 9,
-            "SnapMagnitude": 10.0
+            "SnapMagnitude": 1.0
           }
         },
         {
