@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Bolt;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [BoltGlobalBehaviour("Stage")]
 public class ClientCallbacks : Bolt.GlobalEventListener {
@@ -20,5 +21,10 @@ public class ClientCallbacks : Bolt.GlobalEventListener {
 
         var po = entity.GetComponent<PlayerObject>();
         po.SetPad(GamePadController.instance);
+    }
+
+    public override void Disconnected(BoltConnection connection) {
+        Debug.Log("ClientCallbacks :: Connection has Disconnected by "+connection.DisconnectReason);
+        SceneManager.LoadScene("Start");
     }
 }

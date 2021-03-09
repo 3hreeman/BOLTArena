@@ -13,6 +13,7 @@ public class SpineMechanimController : MonoBehaviour {
     }; 
     
     public string m_resKey;
+    public Animator m_animator;
     public SkeletonMecanim m_mechanim;
     public MeshRenderer m_meshRenderer;
     public Vector2 org_scale;
@@ -25,6 +26,7 @@ public class SpineMechanimController : MonoBehaviour {
         atkAction = act;
     }
     void Start() {
+        m_animator = GetComponent<Animator>();
         m_mechanim = GetComponent<SkeletonMecanim>();
         m_meshRenderer = GetComponent<MeshRenderer>();
         m_boneList = m_mechanim.skeleton.Bones.ToList();
@@ -32,11 +34,12 @@ public class SpineMechanimController : MonoBehaviour {
         m_bound = m_meshRenderer.bounds.size;
         m_mechanim.initialSkinName = m_resKey;
         m_mechanim.Initialize(true);
+        foreach (var bone in m_mechanim.skeleton.Bones) {
+            m_boneList.Add(bone);
+        }
         isInit = true;
     }
 
-    
-    
     private Action atkAction = null;
     public Vector3 GetUIPos() {
         var result = transform.position;
@@ -44,6 +47,10 @@ public class SpineMechanimController : MonoBehaviour {
         return result;
     }
 
+    public void PlayAnimTrigger(string key) {
+        m_animator.SetTrigger(key);
+    }
+    
     public void SetDir(int dir) {
         if (isInit == false) {
             return;

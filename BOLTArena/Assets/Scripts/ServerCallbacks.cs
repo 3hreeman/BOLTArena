@@ -16,7 +16,6 @@ public class ServerCallbacks : Bolt.GlobalEventListener {
 	void Awake() {
 		if (ListenServer) {
 			Player.CreateServerPlayer();
-			Player.ServerPlayer.name = "SERVER";
 		}
 	}
 
@@ -47,6 +46,10 @@ public class ServerCallbacks : Bolt.GlobalEventListener {
 
 	public override void Disconnected(BoltConnection connection) {
 		BoltLog.Warn("Disconnected");
+		var player = connection.GetPlayer();
+		if (player != null) {
+			CombatManager.RemovePlayer(player.playerObject);
+		}
 		base.Disconnected(connection);
 	}
 
@@ -69,18 +72,22 @@ public class ServerCallbacks : Bolt.GlobalEventListener {
 		if (playerToken != null) {
 			player_name = "CLIENT:" + playerToken.m_playerName;
 		}
-		connection.UserData = new Player();
+		connection.UserData = new Player(playerToken);
 		connection.GetPlayer().connection = connection;
 		connection.GetPlayer().name = player_name;
 
 		connection.SetStreamBandwidth(1024 * 1024);
 	}
+	
+	
 
 	public override void SceneLoadRemoteDone(BoltConnection connection, IProtocolToken token) {
 		//remote player의 scene loading이 끝났을 때
 		if (token != null) {
 			var data = token as PlayerData;
-			connection.GetPlayer().InstantiateEntity(data);
+			var player = connection.GetPlayer();
+			player.InstantiateEntity(data);
+			CombatManager.AddPlayer(player.playerObject);
 		}
 		else {
 			Debug.LogError("SceneLoadRemoteDone****Token is NULL****");
@@ -90,8 +97,10 @@ public class ServerCallbacks : Bolt.GlobalEventListener {
 	public override void SceneLoadLocalDone(string scene, IProtocolToken token) {
 		Debug.Log("ServerManager :: Server scene [" + scene + "] load is done");
 		if (Player.serverIsPlaying) {
-			var data = new PlayerData() {m_playerName = "Server", m_resKey = "Enemy"};
+			var data = new PlayerData() {m_playerName = "ServerPlayer", m_resKey = "Enemy"};
 			Player.ServerPlayer.InstantiateEntity(data);
+			var playerObj = Player.ServerPlayer.playerObject;
+			CombatManager.AddPlayer(playerObj);
 		}
 	}
 

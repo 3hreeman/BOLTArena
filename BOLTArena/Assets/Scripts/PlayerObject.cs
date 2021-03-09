@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Bolt;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using UnityEngine.Serialization;
 
 public class PlayerObject : EntityEventListener<IPlayerState> {
     
@@ -19,6 +20,12 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
 
     private float nextAtkTime = 0;
     private float atkCooltime = 1;
+
+    public float m_atkDmg;
+    public float m_hp;
+    public float m_range;
+    public int m_dir;
+    
     private void Awake() {
         m_spine = GetComponentInChildren<SpineMechanimController>();
         m_charController = GetComponent<CharacterController>();
@@ -30,8 +37,8 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
 
     void Update() {
         UpdateInputCommand();
-        UpdateStateView();
         UpdateByState();
+        Test_UpdateStateView();
     }
 
     void UpdateByState() {
@@ -40,20 +47,49 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
 
     public int DirectionView = 0;
     public float HpView = 0;
-    void UpdateStateView() {
+    void Test_UpdateStateView() {
         DirectionView = state.Direction;
         HpView = state.Hp;
     }
 
+    private float m_nextBlinkTime = 0;
+    private float m_nextAtkTime = 0;
+    private float m_emojiTime = 0;
     private bool isMouseInput = false;
     void UpdateInputCommand() {
+        if (entity.HasControl == false) {
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1)) {
+            if (m_nextBlinkTime < BoltNetwork.ServerTime) {
+                m_nextBlinkTime = BoltNetwork.ServerTime + 1;
+                var blink = TestEventPlayerBlink.Create(entity, EntityTargets.Everyone);
+                blink.Send();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2)) {
+            if (m_nextAtkTime < BoltNetwork.ServerTime) {
+                m_nextAtkTime = BoltNetwork.ServerTime + 0.5f;
+                var eventAtk = EventPlayerAttack.Create(entity, EntityTargets.Everyone);
+                eventAtk.Send();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3)) {
+            if (m_emojiTime < BoltNetwork.ServerTime) {
+                m_emojiTime = BoltNetwork.ServerTime + 0.5f;
+                var eventEmoji = EventPlayerEmoji.Create(entity, EntityTargets.Everyone);
+                eventEmoji.Send();
+            }
+        }
+        
         if (Input.GetMouseButton(1)) {
             isMouseInput = true;
             inputVector = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
             inputVector.x = Mathf.Clamp(inputVector.x, -1, 1);
             inputVector.y = Mathf.Clamp(inputVector.y, -1, 1);
         }
-
+        
         if (Input.GetMouseButtonUp(1)) {
             inputVector = Vector2.zero;
             isMouseInput = false;
@@ -96,7 +132,7 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
     public override void SimulateController() {
         UpdateInputCommand();
         IPlayerCommandInput input = PlayerCommand.Create();
-
+        
         input.inputVector = inputVector;
         input.isRun = isRun;
         input.attack = isAttack;
@@ -135,10 +171,42 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
     }
 
     void UpdateAttack(PlayerCommand cmd) {
-        if (nextAtkTime <= BoltNetwork.ServerTime) {
+        if (nextAtkTime <= BoltNetwork.ServerTime) { 
             state.attack();
             nextAtkTime = BoltNetwork.ServerTime + atkCooltime;
         }
     }
+
+    public bool IsAlive() {
+        return m_hp > 0;
+    }
+
+    public Vector3 GetCurPosition() {
+        return transform.position;
+    }
+
+    public void TakeDmg(float dmg) {
+        m_hp -= dmg;
+        if (m_hp <= 0) {
+            Debug.Log("DEADEADEADEADEAD");
+        }
+        if (entity.HasControl) {
+            var hitEvent = EventPlayerHit.Create(GlobalTargets.Everyone, ReliabilityModes.ReliableOrdered);
+            hitEvent.Send();
+        }
+    }
+    
+    public override void OnEvent(TestEventPlayerBlink evnt) {
+        m_spine.PlayHitEffect();
+    }
+
+    public override void OnEvent(EventPlayerAttack evnt) {
+        m_spine.PlayAnimTrigger("attack");
+    }
+    
+    public override void OnEvent(EventPlayerEmoji evnt) {
+        m_spine.PlayAnimTrigger("victory");
+    }
+
 }
 

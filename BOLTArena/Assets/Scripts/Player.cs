@@ -10,7 +10,8 @@ public partial class Player : IDisposable
 	public string name;
 	public BoltEntity entity;
 	public BoltConnection connection;
-
+	public PlayerObject playerObject;
+	
 	public IPlayerState state {
 		get { return entity.GetState<IPlayerState>(); }
 	}
@@ -19,7 +20,8 @@ public partial class Player : IDisposable
 		get { return connection == null; }
 	}
 
-	public Player() {
+	public Player(PlayerData data) {
+		name = data.m_playerName;
 		m_PlayerList.Add(this);
 	}
 
@@ -30,12 +32,14 @@ public partial class Player : IDisposable
 		}
 	}
 
-	internal void Spawn() {
+	void SpawnPlayerObject() {
 		if (entity) {
 			state.Hp = 100;
 			state.Direction = 1;
 			// teleport
 			entity.transform.position = RandomPosition();
+			playerObject = entity.GetComponent<PlayerObject>();
+			playerObject.name = name;
 		}
 	}
 
@@ -60,12 +64,11 @@ public partial class Player : IDisposable
 		}
 	}
 
-	public void InstantiateEntity(PlayerData data)
-	{
+	public void InstantiateEntity(PlayerData data) {
 		entity = BoltNetwork.Instantiate(BoltPrefabs.PlayerObject, data, RandomPosition(), Quaternion.identity);
 
-		state.Name = name;
-
+		state.Name = data.m_playerName;
+		
 		if (isServer) {
 			entity.TakeControl();
 		}
@@ -73,12 +76,11 @@ public partial class Player : IDisposable
 			entity.AssignControl(connection);
 		}
 
-		Spawn();
+		SpawnPlayerObject();
 	}
 }
 
-partial class Player
-{
+partial class Player {
 	static List<Player> m_PlayerList = new List<Player>();
 
 	public static IEnumerable<Player> redPlayers {
@@ -103,7 +105,8 @@ partial class Player
 	}
 
 	public static void CreateServerPlayer() {
-		ServerPlayer = new Player();
+		var data = new PlayerData() {m_playerName = "ServerPlayer", m_resKey = "Enemy"};
+		ServerPlayer = new Player(data);
 	}
 
 	static Vector3 RandomPosition() {
