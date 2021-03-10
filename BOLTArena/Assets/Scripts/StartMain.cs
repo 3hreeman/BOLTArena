@@ -144,7 +144,7 @@ public class StartMain : Bolt.GlobalEventListener {
 			var matchName = string.Format("{0} - {1}", id, map);
 
 			BoltMatchmaking.CreateSession(
-				sessionID: matchName,
+				sessionID: "무야호~",
 				sceneToLoad: map
 			);
 		}
