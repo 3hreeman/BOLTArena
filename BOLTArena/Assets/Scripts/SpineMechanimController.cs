@@ -21,10 +21,14 @@ public class SpineMechanimController : MonoBehaviour {
     private bool isInit = false;
     List<Bone> m_boneList = new List<Bone>();
     public Vector2 m_bound;
-    public void init(string resKey, Action act) {
+    public void init(string resKey) {
         m_resKey = resKey;
-        atkAction = act;
     }
+
+    public void SetAttackAction(Action act) {
+        hitAction = act;
+    }
+    
     void Start() {
         m_animator = GetComponent<Animator>();
         m_mechanim = GetComponent<SkeletonMecanim>();
@@ -38,13 +42,20 @@ public class SpineMechanimController : MonoBehaviour {
             m_boneList.Add(bone);
         }
         isInit = true;
+        
     }
 
-    private Action atkAction = null;
-    public Vector3 GetUIPos() {
+    private Action hitAction = null;
+    public Vector3 GetDmgTextPos() {
+        var result = transform.position;
+        result.y += m_bound.y * 2;
+        return result;
+    }
+
+    public Vector2 GetCanvasPosition() {
         var result = transform.position;
         result.y += m_bound.y;
-        return result;
+        return Camera.main.WorldToScreenPoint(result);
     }
 
     public void PlayAnimTrigger(string key) {
@@ -97,4 +108,9 @@ public class SpineMechanimController : MonoBehaviour {
         hitCoroutine = null;
     }
 
+    void hit() {
+        if (hitAction != null) {
+            hitAction();
+        }
+    }
 }

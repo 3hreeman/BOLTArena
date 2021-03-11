@@ -2,15 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Bolt;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.Serialization;
+using Event = Bolt.Event;
 
 public class PlayerObject : EntityEventListener<IPlayerState> {
     
     private SpineMechanimController m_spine;
     public GamePadController m_pad = null;
-
+    public UnitPanel m_unitPanel;
+    
     private Vector2 inputVector; 
     private bool isRun;
     private bool isAttack;
@@ -21,11 +24,30 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
     private float nextAtkTime = 0;
     private float atkCooltime = 1;
 
-    public float m_atkDmg;
-    public float m_hp;
-    public float m_range;
-    public int m_dir;
-    
+    public const float MAX_HP = 100;
+    float m_atkDmg = 10;
+    float m_hp = 100;
+    float m_range = 1;
+    int m_dir = 1;
+
+    private float reviveInterval = 3;
+    private float reviveAt = 0;
+    public float hp {
+        get { return m_hp; }
+    }
+
+    public float range {
+        get { return m_range; }
+    }
+
+    public float dir {
+        get { return m_dir; }
+    }
+
+    public float atkDmg {
+        get { return m_atkDmg; }
+    }
+
     private void Awake() {
         m_spine = GetComponentInChildren<SpineMechanimController>();
         m_charController = GetComponent<CharacterController>();
@@ -43,6 +65,8 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
 
     void UpdateByState() {
         m_spine.SetDir(state.Direction);
+        m_hp = state.Hp;
+        m_dir = state.Direction;
     }
 
     public int DirectionView = 0;
@@ -58,6 +82,10 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
     private bool isMouseInput = false;
     void UpdateInputCommand() {
         if (entity.HasControl == false) {
+            return;
+        }
+
+        if (state.IsDead) {
             return;
         }
 
@@ -122,11 +150,25 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
         state.SetTransforms(state.Transform, transform);
         state.SetAnimator(GetComponentInChildren<Animator>());
         var data = entity.AttachToken as PlayerData;
-        Debug.Log("attached token = "+ data.m_playerName+ " / " +data.m_resKey);
-        m_spine.init(data.m_resKey, null);
+        // Debug.Log("attached token = "+ data.m_playerName+ " / " +data.m_resKey);
+
+        m_unitPanel.init(data.m_playerName, entity.HasControl);
+        m_spine.init(data.m_resKey);
+        if (BoltNetwork.IsServer) {
+            m_spine.SetAttackAction( () => { CombatManager.DoAttack(this); } );
+        }
     }
 
     public override void SimulateOwner() {
+        CheckDeadUnitRevive();
+    }
+
+    void CheckDeadUnitRevive() {
+        if (state.IsDead) {
+            if (reviveAt <= BoltNetwork.ServerTime) {
+                SetAlive(true);
+            }
+        }
     }
 
     public override void SimulateController() {
@@ -186,16 +228,57 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
     }
 
     public void TakeDmg(float dmg) {
+        if (state.IsDead) {
+            return;
+        }
+        Debug.Log(gameObject.name + " take dmg " + dmg);
         m_hp -= dmg;
         if (m_hp <= 0) {
             Debug.Log("DEADEADEADEADEAD");
         }
-        if (entity.HasControl) {
-            var hitEvent = EventPlayerHit.Create(GlobalTargets.Everyone, ReliabilityModes.ReliableOrdered);
-            hitEvent.Send();
+
+        state.Hp = m_hp;
+        if (state.Hp <= 0) {
+            state.Hp = 0;
+            inputVector = Vector2.zero;
+            SetAlive(false);
+        }
+        var hitEvent = EventPlayerHit.Create(entity, EntityTargets.Everyone);
+        hitEvent.DmgAmount = dmg;
+        hitEvent.Send();
+    }
+
+    void SetAlive(bool isAlive) {
+        if (isAlive) {
+            state.Hp = 100;
+            state.damage = false;
+            state.IsDead = false;
+        }
+        else {
+            state.Hp = 0;
+            reviveAt = BoltNetwork.ServerTime + reviveInterval;
+            state.damage = true;
+            state.IsDead = true;
         }
     }
+
+    public Vector2 GetDmgTextPos() {
+        return m_spine.GetDmgTextPos();
+    }
+
+    public Vector2 GetCanvasPosition() {
+        return m_spine.GetCanvasPosition();
+    }
+
+    public float GetCurHpRatio() {
+        return Mathf.Clamp(state.Hp / MAX_HP, 0, 1);
+    }
     
+    public override void OnEvent(EventPlayerHit evnt) {
+        CombatDmgFontObject.PrintDmgFont(GetDmgTextPos(), evnt.DmgAmount.ToString(), CombatDmgFontObject.DmgTxtType.NormalAtk, 0);
+        m_spine.PlayHitEffect();
+    }
+
     public override void OnEvent(TestEventPlayerBlink evnt) {
         m_spine.PlayHitEffect();
     }
@@ -207,6 +290,6 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
     public override void OnEvent(EventPlayerEmoji evnt) {
         m_spine.PlayAnimTrigger("victory");
     }
-
 }
+
 

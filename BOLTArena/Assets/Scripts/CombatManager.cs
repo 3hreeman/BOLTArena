@@ -25,20 +25,25 @@ public class CombatManager {
             return false;
         }
 
-        var atk_pos = attacker.GetCurPosition();
-        var target_pos = target.GetCurPosition();
+        Vector2 atk_pos = attacker.GetCurPosition();
+        Vector2 target_pos = target.GetCurPosition();
         var dist = Vector2.Distance(atk_pos, target_pos);
-        // Console.WriteLine("atk pos : "+atk_pos.ToString());
-        // Console.WriteLine("target pos : "+target_pos.ToString());
-        // Console.WriteLine("distance : "+dist);
-        if (Vector2.Distance(atk_pos, target_pos) > attacker.m_range) {
+        // Debug.Log("atk pos : "+atk_pos.ToString());
+        // Debug.Log("target pos : "+target_pos.ToString());
+        // Debug.Log("distance : "+dist);
+        Debug.Log(dist + " > "+attacker.range);
+        if (dist > attacker.range) {
+
+            Debug.Log("Not In Range");
             return false;
         }
 
-        if (attacker.m_dir == 1 && atk_pos.x > target_pos.x) {
+        if (attacker.dir == 1 && atk_pos.x > target_pos.x) {
+            Debug.Log("target is behind");
             return false;
         }
-        if (attacker.m_dir == -1 && atk_pos.x < target_pos.x) {
+        if (attacker.dir == -1 && atk_pos.x < target_pos.x) {
+            Debug.Log("target is behind");
             return false;
         }
 
@@ -46,7 +51,19 @@ public class CombatManager {
     }
     
     public static bool DoAttack(PlayerObject attacker, PlayerObject target) {
-        target.TakeDmg(attacker.m_atkDmg);
+        target.TakeDmg(attacker.atkDmg);
         return true;
+    }
+
+    public static void DoAttack(PlayerObject attacker) {
+        foreach (var target in playerObjectList) {
+            if (target == attacker) {
+                continue;
+            }
+
+            if (CheckTargetInRange(attacker, target)) {
+                target.TakeDmg(attacker.atkDmg);
+            }
+        }
     }
 }

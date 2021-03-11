@@ -11,5 +11,10 @@ public class StageMain : MonoBehaviour {
             SceneManager.LoadScene("Start");
         }
     }
-    
+
+    private void Update() {
+        if (Input.GetMouseButtonDown(2)) {
+            Player.ServerPlayer.playerObject.TakeDmg(10);
+        }
+    }
 }
