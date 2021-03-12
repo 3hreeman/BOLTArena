@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using Random = System.Random;
 using UE = UnityEngine;
 
 public partial class Player : IDisposable
@@ -11,6 +12,7 @@ public partial class Player : IDisposable
 	public BoltEntity entity;
 	public BoltConnection connection;
 	public PlayerObject playerObject;
+	public PlayerData playerData;
 	
 	public IPlayerState state {
 		get { return entity.GetState<IPlayerState>(); }
@@ -21,25 +23,32 @@ public partial class Player : IDisposable
 	}
 
 	public Player(PlayerData data) {
-		name = data.m_playerName;
+		playerData = data;
+		name = playerData.m_playerName;
 		m_PlayerList.Add(this);
 	}
 
 	public void Kill() {
 		if (entity) {
 			state.IsDead = true;
-			state.RespawnFrame = BoltNetwork.ServerFrame + (15 * BoltNetwork.FramesPerSecond);
 		}
 	}
 
-	void SpawnPlayerObject() {
+	void SpawnPlayerObject(bool isNpc) {
 		if (entity) {
-			state.Hp = 100;
-			state.Direction = 1;
-			// teleport
-			entity.transform.position = RandomPosition();
+			Debug.Log("-----------------------Player :: SpawnPlayerObject");
+			// entity.transform.position = RandomPosition(isNpc);
 			playerObject = entity.GetComponent<PlayerObject>();
 			playerObject.name = name;
+			playerObject.MAX_HP = isNpc ? UnityEngine.Random.Range(30, 50) : 100;
+			state.IsNpc = isNpc;
+			state.MaxHp = playerObject.MAX_HP;
+			state.Hp = playerObject.MAX_HP;
+			state.Direction = 1;
+			if (isNpc) {
+				Debug.Log("-----------------------Player :: added NpcController Component");
+				playerObject.m_npcController = playerObject.gameObject.AddComponent<NpcController>();
+			}
 		}
 	}
 
@@ -64,11 +73,11 @@ public partial class Player : IDisposable
 		}
 	}
 
-	public void InstantiateEntity(PlayerData data) {
-		entity = BoltNetwork.Instantiate(BoltPrefabs.PlayerObject, data, RandomPosition(), Quaternion.identity);
+	public void InstantiateEntity(PlayerData data, bool isNpc) {
+		entity = BoltNetwork.Instantiate(BoltPrefabs.PlayerObject, data, RandomPosition(isNpc), Quaternion.identity);
 
 		state.Name = data.m_playerName;
-		
+		entity.gameObject.name = data.m_playerName;
 		if (isServer) {
 			entity.TakeControl();
 		}
@@ -76,7 +85,7 @@ public partial class Player : IDisposable
 			entity.AssignControl(connection);
 		}
 
-		SpawnPlayerObject();
+		SpawnPlayerObject(isNpc);
 	}
 }
 
@@ -109,9 +118,9 @@ partial class Player {
 		ServerPlayer = new Player(data);
 	}
 
-	static Vector3 RandomPosition() {
-		float half_height = Camera.main.orthographicSize;
-		float half_width = half_height * Camera.main.aspect;
+	static Vector3 RandomPosition(bool isNpc) {
+		float half_height = isNpc ? 10 : Camera.main.orthographicSize;
+		float half_width = isNpc ? 10 : half_height * Camera.main.aspect;
 		float x = UE.Random.Range(-half_width, half_width);
 		float y = UE.Random.Range(-half_height, half_height);
 		return new Vector3(x, y, y);

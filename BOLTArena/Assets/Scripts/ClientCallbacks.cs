@@ -17,10 +17,13 @@ public class ClientCallbacks : Bolt.GlobalEventListener {
     }
 
     public override void ControlOfEntityGained(BoltEntity entity) {
-        Debug.Log("ClientCallbacks :: ControlOfEntityGained");
+        Debug.Log("ClientCallbacks :: ControlOfEntityGained - "+entity.gameObject.name);
 
         var po = entity.GetComponent<PlayerObject>();
-        po.SetPad(GamePadController.instance);
+        if (po.state.IsNpc == false) {
+            CameraManager.SetTarget(po);
+            po.SetPad(GamePadController.instance);
+        }
     }
 
     public override void Disconnected(BoltConnection connection) {

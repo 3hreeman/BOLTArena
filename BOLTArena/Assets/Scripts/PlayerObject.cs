@@ -14,7 +14,7 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
     public GamePadController m_pad = null;
     public UnitPanel m_unitPanel;
     
-    private Vector2 inputVector; 
+    public Vector2 inputVector; 
     private bool isRun;
     private bool isAttack;
 
@@ -24,7 +24,7 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
     private float nextAtkTime = 0;
     private float atkCooltime = 1;
 
-    public const float MAX_HP = 100;
+    public float MAX_HP = 100;
     float m_atkDmg = 10;
     float m_hp = 100;
     float m_range = 1;
@@ -32,6 +32,7 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
 
     private float reviveInterval = 3;
     private float reviveAt = 0;
+
     public float hp {
         get { return m_hp; }
     }
@@ -47,7 +48,13 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
     public float atkDmg {
         get { return m_atkDmg; }
     }
+    
+    public NpcController m_npcController;
 
+    public bool IsNpc {
+        get { return m_npcController != null; }
+    }
+    
     private void Awake() {
         m_spine = GetComponentInChildren<SpineMechanimController>();
         m_charController = GetComponent<CharacterController>();
@@ -89,6 +96,10 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
             return;
         }
 
+        if (m_npcController != null) {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
             if (m_nextBlinkTime < BoltNetwork.ServerTime) {
                 m_nextBlinkTime = BoltNetwork.ServerTime + 1;
@@ -113,9 +124,7 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
         
         if (Input.GetMouseButton(1)) {
             isMouseInput = true;
-            inputVector = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
-            inputVector.x = Mathf.Clamp(inputVector.x, -1, 1);
-            inputVector.y = Mathf.Clamp(inputVector.y, -1, 1);
+            SetInputVector((Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position));
         }
         
         if (Input.GetMouseButtonUp(1)) {
@@ -126,24 +135,34 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
         if (isMouseInput == false) {
             if (m_pad != null) {
                 if (m_pad.isInput) {
-                    inputVector = m_pad.inputVector;
+                    SetInputVector(m_pad.inputVector);
                 }
                 else {
-                    inputVector = Vector2.zero;
+                    SetInputVector(Vector2.zero);
                 }
             }
         }
         
         if (Input.GetKey(KeyCode.Space)) {
-            isAttack = true;
+            SetAttack(true);
         }
         else {
-            isAttack = false;
+            SetAttack(false);
         }
 
         isRun = Input.GetKey(KeyCode.LeftShift);
     }
-    
+
+    public void SetInputVector(Vector2 dir) {
+        dir.x = Mathf.Clamp(dir.x, -1, 1);
+        dir.y = Mathf.Clamp(dir.y, -1, 1);
+
+        inputVector = dir;
+    }
+
+    public void SetAttack(bool flag) {
+        isAttack = flag;
+    }
 
     public override void Attached() {
         //최초 동기화가 이루어진다음 처리할 내용
@@ -152,11 +171,14 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
         var data = entity.AttachToken as PlayerData;
         // Debug.Log("attached token = "+ data.m_playerName+ " / " +data.m_resKey);
 
-        m_unitPanel.init(data.m_playerName, entity.HasControl);
+        m_unitPanel.init(data.m_playerName, entity.HasControl, state.IsNpc);
         m_spine.init(data.m_resKey);
         if (BoltNetwork.IsServer) {
             m_spine.SetAttackAction( () => { CombatManager.DoAttack(this); } );
         }
+        // if (IsNpc == false) {
+        //     CameraManager.SetTarget(this);
+        // }
     }
 
     public override void SimulateOwner() {
@@ -197,7 +219,7 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
                     state.Direction = -1;
                 }
 
-                m_charController.Move(MOVE_SPD * cmd.Input.inputVector * BoltNetwork.FrameDeltaTime);                
+                m_charController.Move(MOVE_SPD * cmd.Input.inputVector * BoltNetwork.FrameDeltaTime);
                 if (cmd.Input.inputVector != Vector3.zero) {
                     state.move = true;
                 }
@@ -240,7 +262,7 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
         state.Hp = m_hp;
         if (state.Hp <= 0) {
             state.Hp = 0;
-            inputVector = Vector2.zero;
+            SetInputVector(Vector2.zero);
             SetAlive(false);
         }
         var hitEvent = EventPlayerHit.Create(entity, EntityTargets.Everyone);
@@ -271,7 +293,7 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
     }
 
     public float GetCurHpRatio() {
-        return Mathf.Clamp(state.Hp / MAX_HP, 0, 1);
+        return Mathf.Clamp(state.Hp / state.MaxHp, 0, 1);
     }
     
     public override void OnEvent(EventPlayerHit evnt) {

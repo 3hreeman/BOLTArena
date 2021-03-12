@@ -48,7 +48,7 @@ public class SpineMechanimController : MonoBehaviour {
     private Action hitAction = null;
     public Vector3 GetDmgTextPos() {
         var result = transform.position;
-        result.y += m_bound.y * 2;
+        result.y += m_bound.y * 1.25f;
         return result;
     }
 

@@ -22,9 +22,9 @@ public class UnitPanel : MonoBehaviour {
         transform.SetParent(GameObject.FindWithTag("StageCanvas").transform);
     }
 
-    public void init(string name, bool isController) {
+    public void init(string name, bool isController, bool isNpc) {
         m_textPlayerName.text = name;
-        m_hpImg.color = isController ? Color.green : Color.red;
+        m_hpImg.color = isController ? Color.green : (isNpc ? Color.red : Color.blue);
     }
 
     private void Update() {

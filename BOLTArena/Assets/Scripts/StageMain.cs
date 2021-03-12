@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class StageMain : MonoBehaviour {
     private void Awake() {
@@ -13,8 +15,12 @@ public class StageMain : MonoBehaviour {
     }
 
     private void Update() {
-        if (Input.GetMouseButtonDown(2)) {
-            Player.ServerPlayer.playerObject.TakeDmg(10);
+        if (BoltNetwork.IsServer) {
+            if (Input.GetMouseButtonDown(2)) {
+                var data = new PlayerData() {m_playerName = "NPC", m_resKey = "Enemy"};
+                var npc_player = new Player(data);
+                CombatManager.GeneratePlayerObject(npc_player, data, true);
+            }            
         }
     }
 }

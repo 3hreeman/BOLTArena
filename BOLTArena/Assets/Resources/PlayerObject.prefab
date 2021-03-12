@@ -239,6 +239,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_pad: {fileID: 0}
   m_unitPanel: {fileID: 3148094302132667012}
+  inputVector: {x: 0, y: 0}
+  MAX_HP: 100
+  m_npcController: {fileID: 0}
   DirectionView: 0
   HpView: 0
 --- !u!143 &876637891070603873

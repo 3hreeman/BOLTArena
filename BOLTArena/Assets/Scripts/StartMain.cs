@@ -12,7 +12,7 @@ using Random = System.Random;
 
 public class StartMain : Bolt.GlobalEventListener {
 	public static bool IsInit = false;
-	private Dictionary<string, string> nameSkinDict = new Dictionary<string, string>() { {"Fighter", "Fighter"}, {"Halloween", "Halloween"}, {"Magician", "Magician"},
+	public static Dictionary<string, string> nameSkinDict = new Dictionary<string, string>() { {"Fighter", "Fighter"}, {"Halloween", "Halloween"}, {"Magician", "Magician"},
 		{"Aloha", "Aloha"}, {"Blossom", "Blossom"}, {"Choir", "Choir"}, {"Mechagic", "Mechagic"}, {"Pirate", "Pirate"}, {"Pharaoh", "Pharaoh"}, {"Sulbim", "Sulbim"}};
 	
 	private enum State {

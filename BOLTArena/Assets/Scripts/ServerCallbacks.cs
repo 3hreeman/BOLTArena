@@ -19,13 +19,15 @@ public class ServerCallbacks : Bolt.GlobalEventListener {
 		}
 	}
 
+	private float nextGenerateTime = 5;
+	private float GENERATE_INTERVAL = 5;
 	void FixedUpdate() {
-		// foreach (Player p in Player.allPlayers) {
-		// 	// if we have an entity, it's dead but our spawn frame has passed
-		// 	if (p.entity && p.state.Dead && p.state.respawnFrame <= BoltNetwork.ServerFrame) {
-		// 		p.Spawn();
-		// 	}
-		// }
+		if (nextGenerateTime <= BoltNetwork.ServerTime) {
+			nextGenerateTime = BoltNetwork.ServerTime + GENERATE_INTERVAL;
+			var data = new PlayerData() {m_playerName = "NPC", m_resKey = "Enemy"};
+			var npc_player = new Player(data);
+			CombatManager.GeneratePlayerObject(npc_player, data, true);
+		}
 	}
 
 	public override void ConnectRequest(UdpKit.UdpEndPoint endpoint, Bolt.IProtocolToken token) {
@@ -33,14 +35,14 @@ public class ServerCallbacks : Bolt.GlobalEventListener {
 		if (token != null) {
 			BoltLog.Info("Token Received");
 			var recv_token = (PlayerData) token;
-			BoltLog.Info("111111111111111111ConnectRequest - "+recv_token.m_playerName+ " -- "+recv_token.m_resKey);
+			// BoltLog.Info("111111111111111111ConnectRequest - "+recv_token.m_playerName+ " -- "+recv_token.m_resKey);
 		}
 
 		BoltNetwork.Accept(endpoint);
 	}
 
 	public override void ConnectAttempt(UdpEndPoint endpoint, IProtocolToken token) {
-		BoltLog.Warn("22222222222222222222ConnectAttempt");
+		// BoltLog.Warn("22222222222222222222ConnectAttempt");
 		base.ConnectAttempt(endpoint, token);
 	}
 
@@ -48,7 +50,7 @@ public class ServerCallbacks : Bolt.GlobalEventListener {
 		BoltLog.Warn("Disconnected");
 		var player = connection.GetPlayer();
 		if (player != null) {
-			CombatManager.RemovePlayer(player.playerObject);
+			CombatManager.RemovePlayerObject(player.playerObject);
 		}
 		base.Disconnected(connection);
 	}
@@ -86,8 +88,9 @@ public class ServerCallbacks : Bolt.GlobalEventListener {
 		if (token != null) {
 			var data = token as PlayerData;
 			var player = connection.GetPlayer();
-			player.InstantiateEntity(data);
-			CombatManager.AddPlayer(player.playerObject);
+			CombatManager.GeneratePlayerObject(player, data, false);
+			// player.InstantiateEntity(data, false);
+			// CombatManager.AddPlayer(player.playerObject);
 		}
 		else {
 			Debug.LogError("SceneLoadRemoteDone****Token is NULL****");
@@ -98,9 +101,7 @@ public class ServerCallbacks : Bolt.GlobalEventListener {
 		Debug.Log("ServerManager :: Server scene [" + scene + "] load is done");
 		if (Player.serverIsPlaying) {
 			var data = new PlayerData() {m_playerName = "ServerPlayer", m_resKey = "Enemy"};
-			Player.ServerPlayer.InstantiateEntity(data);
-			var playerObj = Player.ServerPlayer.playerObject;
-			CombatManager.AddPlayer(playerObj);
+			CombatManager.GeneratePlayerObject(Player.ServerPlayer, data, false);
 		}
 	}
 
