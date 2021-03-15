@@ -25,6 +25,7 @@ public class UnitPanel : MonoBehaviour {
     public void init(string name, bool isController, bool isNpc) {
         m_textPlayerName.text = name;
         m_hpImg.color = isController ? Color.green : (isNpc ? Color.red : Color.blue);
+        gameObject.SetActive(false);
     }
 
     private void Update() {

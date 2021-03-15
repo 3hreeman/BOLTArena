@@ -88,7 +88,7 @@ public class SpineMechanimController : MonoBehaviour {
     readonly float hit_eff_time = 0.25f;
     IEnumerator HitEffect() {
         float time = 0;
-        var new_pos = transform.position;
+
         foreach (var bone in m_boneList) {
             bone.Skeleton.SetColor(new Color(1, 0, 0, 1f));
         }

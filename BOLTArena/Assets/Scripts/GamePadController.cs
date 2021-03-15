@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class GamePadController : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
-
+    public GameObject padObj = null;
     public static GamePadController instance = null;
     private static string _resourcePath = "GamePad";
     
@@ -31,9 +31,30 @@ public class GamePadController : MonoBehaviour, IBeginDragHandler, IDragHandler,
     private void Awake() {
         Debug.Log("GamePadController :: Awake");
         instance = this;
+        padObj = transform.parent.gameObject;
         rectTransform = GetComponent<RectTransform>();
         stickRange = rectTransform.sizeDelta.x / 2;
-        DontDestroyOnLoad(this);
+        DontDestroyOnLoad(padObj);
+    }
+
+    public Action actionForBtnA;
+    public Action actionForBtnB;
+
+    public void RegisterBtnAction(Action act_a, Action act_b) {
+        actionForBtnA = act_a;
+        actionForBtnB = act_b;
+    }
+
+    public void DoActionA() {
+        if (actionForBtnA != null) {
+            actionForBtnA();
+        }
+    }
+
+    public void DoActionB() {
+        if (actionForBtnB != null) {
+            actionForBtnB();
+        }
     }
 
     void ControlStick(PointerEventData eventData) {

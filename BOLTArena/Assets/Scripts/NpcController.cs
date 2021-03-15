@@ -6,7 +6,6 @@ using Random = System.Random;
 
 public class NpcController : MonoBehaviour {
     private const float UPDATE_INTERVAL = .25f;
-
     public PlayerObject m_targetObject;
     public PlayerObject m_chaseObject;
     public float nextUpdateAt = 0;
@@ -17,13 +16,14 @@ public class NpcController : MonoBehaviour {
     public float server_time;
     // Update is called once per frame
     void Update() {
+        
         server_time = BoltNetwork.ServerTime;
 
         if (nextUpdateAt > server_time) {
             return;
         }
-        nextUpdateAt = server_time + UPDATE_INTERVAL;
-        UpdateTarget();
+        nextUpdateAt = server_time + (m_chaseObject != null ? UPDATE_INTERVAL: UnityEngine.Random.Range(1, 5));
+        // UpdateTarget();
         UpdateMove();
         UpdateAttack();
     }
@@ -39,8 +39,14 @@ public class NpcController : MonoBehaviour {
                 dir = (m_chaseObject.transform.position - transform.position).normalized;
             }
             else {
-                dir.x = UnityEngine.Random.Range(-.5f, .5f);
-                dir.y = UnityEngine.Random.Range(-.5f, .5f);
+                if (UnityEngine.Random.Range(0, 100) > 50) {
+                    dir.x = UnityEngine.Random.Range(-1f, 1f);
+                    dir.y = UnityEngine.Random.Range(-1f, 1f);
+                }
+                else {
+                    dir.x = 0;
+                    dir.y = 0;
+                }
             }
         }
         m_targetObject.SetInputVector(dir);

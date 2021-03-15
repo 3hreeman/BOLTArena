@@ -7,7 +7,7 @@ using UnityEngine;
 [BoltGlobalBehaviour(BoltNetworkModes.Server, "Stage")]
 public class ServerCallbacks : Bolt.GlobalEventListener {
     public static bool ListenServer = true;
-
+    
 	public override bool PersistBetweenStartupAndShutdown()
 	{
 		return base.PersistBetweenStartupAndShutdown();
@@ -16,20 +16,21 @@ public class ServerCallbacks : Bolt.GlobalEventListener {
 	void Awake() {
 		if (ListenServer) {
 			Player.CreateServerPlayer();
+			CombatManager.GenerateNpc(1);
 		}
 	}
 
 	private float nextGenerateTime = 5;
 	private float GENERATE_INTERVAL = 5;
+	private int MAX_NPC_COUNT = 50;
+	
 	void FixedUpdate() {
-		if (nextGenerateTime <= BoltNetwork.ServerTime) {
-			nextGenerateTime = BoltNetwork.ServerTime + GENERATE_INTERVAL;
-			var data = new PlayerData() {m_playerName = "NPC", m_resKey = "Enemy"};
-			var npc_player = new Player(data);
-			CombatManager.GeneratePlayerObject(npc_player, data, true);
-		}
+		// if (nextGenerateTime <= BoltNetwork.ServerTime) {
+		// 	nextGenerateTime = BoltNetwork.ServerTime + GENERATE_INTERVAL;
+		// 	GenerateNpc(5);
+		// }
 	}
-
+	
 	public override void ConnectRequest(UdpKit.UdpEndPoint endpoint, Bolt.IProtocolToken token) {
 		
 		if (token != null) {
@@ -88,9 +89,8 @@ public class ServerCallbacks : Bolt.GlobalEventListener {
 		if (token != null) {
 			var data = token as PlayerData;
 			var player = connection.GetPlayer();
-			CombatManager.GeneratePlayerObject(player, data, false);
-			// player.InstantiateEntity(data, false);
-			// CombatManager.AddPlayer(player.playerObject);
+			player.playerData = data;
+			CombatManager.GeneratePlayerObject(player, false);
 		}
 		else {
 			Debug.LogError("SceneLoadRemoteDone****Token is NULL****");
@@ -98,10 +98,9 @@ public class ServerCallbacks : Bolt.GlobalEventListener {
 	}
 
 	public override void SceneLoadLocalDone(string scene, IProtocolToken token) {
-		Debug.Log("ServerManager :: Server scene [" + scene + "] load is done");
+		// Debug.Log("ServerManager :: Server scene [" + scene + "] load is done");
 		if (Player.serverIsPlaying) {
-			var data = new PlayerData() {m_playerName = "ServerPlayer", m_resKey = "Enemy"};
-			CombatManager.GeneratePlayerObject(Player.ServerPlayer, data, false);
+			CameraManager.SetTarget(Player.ServerPlayer.playerObject);
 		}
 	}
 

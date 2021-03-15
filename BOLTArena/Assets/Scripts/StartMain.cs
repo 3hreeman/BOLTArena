@@ -98,6 +98,10 @@ public class StartMain : Bolt.GlobalEventListener {
 		}
 	}
 
+	public static string GetRandomResKey() {
+		int idx = UnityEngine.Random.Range(0, nameSkinDict.Count);
+		return nameSkinDict.ToList()[idx].Value;
+	}
 	void State_SelectMode() {
 		if (ExpandButton("Server")) {
 			currentState = State.SelectMap;

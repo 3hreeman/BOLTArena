@@ -6,12 +6,7 @@ public class CameraManager : MonoBehaviour {
     public PlayerObject m_targetObject = null;
 
     private void Awake() {
-        Debug.Log("-----------------------------------CameraManager :: Awake");
         instance = this;
-    }
-
-    private void Start() {
-        Debug.Log("-----------------------------------CameraManager :: Start");
     }
 
     public static void SetTarget(PlayerObject target) {

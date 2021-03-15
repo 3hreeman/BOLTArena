@@ -173,6 +173,7 @@ GameObject:
   - component: {fileID: 4518046467409728215}
   - component: {fileID: 6769901361190376503}
   - component: {fileID: 876637891070603873}
+  - component: {fileID: 196699674}
   m_Layer: 0
   m_Name: PlayerObject
   m_TagString: Untagged
@@ -210,7 +211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneGuid: 
   _serializerGuid: 73a3dcb3-dc0f-4023-9c53-3fadb6d2cda0
-  _prefabId: 1
+  _prefabId: 2
   _updateRate: 1
   _autoFreezeProxyFrames: 0
   _clientPredicted: 1
@@ -241,6 +242,7 @@ MonoBehaviour:
   m_unitPanel: {fileID: 3148094302132667012}
   inputVector: {x: 0, y: 0}
   MAX_HP: 100
+  m_nextAtkTime: 0
   m_npcController: {fileID: 0}
   DirectionView: 0
   HpView: 0
@@ -262,6 +264,25 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0.1, z: 0}
+--- !u!95 &196699674
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6396712091083356659}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4ebbf87a867f59a49904b5bb5fb8d125, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &6287731231222884825
 PrefabInstance:
   m_ObjectHideFlags: 0
