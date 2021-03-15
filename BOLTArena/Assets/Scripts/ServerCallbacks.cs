@@ -20,17 +20,6 @@ public class ServerCallbacks : Bolt.GlobalEventListener {
 		}
 	}
 
-	private float nextGenerateTime = 5;
-	private float GENERATE_INTERVAL = 5;
-	private int MAX_NPC_COUNT = 50;
-	
-	void FixedUpdate() {
-		// if (nextGenerateTime <= BoltNetwork.ServerTime) {
-		// 	nextGenerateTime = BoltNetwork.ServerTime + GENERATE_INTERVAL;
-		// 	GenerateNpc(5);
-		// }
-	}
-	
 	public override void ConnectRequest(UdpKit.UdpEndPoint endpoint, Bolt.IProtocolToken token) {
 		
 		if (token != null) {
@@ -43,7 +32,6 @@ public class ServerCallbacks : Bolt.GlobalEventListener {
 	}
 
 	public override void ConnectAttempt(UdpEndPoint endpoint, IProtocolToken token) {
-		// BoltLog.Warn("22222222222222222222ConnectAttempt");
 		base.ConnectAttempt(endpoint, token);
 	}
 
