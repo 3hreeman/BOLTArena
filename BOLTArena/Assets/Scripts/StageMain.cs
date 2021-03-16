@@ -7,7 +7,14 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class StageMain : MonoBehaviour {
+
+    public static bool IsStageStarted = false;
+    public static bool IsStageEnd = false;
     private void Awake() {
+        IsStageEnd = false;
+        if (ServerMain.HeadlessMode == true) {
+            return;
+        }
         if (StartMain.IsInit == false) {
             SceneManager.LoadScene("Start");
         }
@@ -18,6 +25,28 @@ public class StageMain : MonoBehaviour {
             if (Input.GetMouseButtonDown(2)) {
                 CombatManager.GenerateNpc(5);
             }            
+        }
+    }
+
+    private void OnGUI() {
+        var btnSize = ScreenInfo.screenSize.x / 10;
+        Rect tex = new Rect(ScreenInfo.screenSize.x-btnSize, 0, btnSize, btnSize);
+        GUILayout.BeginArea(tex);
+        if (GUILayout.Button("Shutdown", GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true))) {
+            StageEnd();
+        }
+        GUILayout.EndArea();
+    }
+
+    public static void StageEnd() {
+        BoltNetwork.Shutdown();
+        CombatManager.ResetAll();
+        CombatDmgFontObject.ResetAll();
+        if (BoltNetwork.IsServer) {
+            SceneManager.LoadScene("ServerStart");
+        }
+        else {
+            SceneManager.LoadScene("Start");
         }
     }
 }

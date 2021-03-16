@@ -45,6 +45,11 @@ public class CombatDmgFontObject : MonoBehaviour
         }
     }
 
+    public static void ResetAll() {
+        entryQueue = new Queue<CombatDmgFontObject>();
+        usingList = new List<CombatDmgFontObject>();
+    }
+    
     private void Awake() {
         txtDmgFont.text = "NOT_SETTED";
         gameObject.SetActive(false);
@@ -52,6 +57,9 @@ public class CombatDmgFontObject : MonoBehaviour
 
     public static void PrintDmgFont(Vector3 pos, string data, DmgTxtType type, int order_idx) {
         //return;
+        if (ServerMain.HeadlessMode == true) {
+            return;
+        }
         CombatDmgFontObject combatDmgFont = null;
         if(entryQueue.Count == 0) {
             if (DmgFontPrefab == null) {

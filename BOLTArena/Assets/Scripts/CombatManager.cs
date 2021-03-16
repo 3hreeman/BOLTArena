@@ -6,18 +6,21 @@ using UnityEngine;
 using Debug = UnityEngine.Debug;
 
 public class CombatManager {
-    public static PlayerObject ownerPlayerObject = null;
     static List<PlayerObject> allPlayerObjectList = new List<PlayerObject>();
     private static List<PlayerObject> realPlayerList = new List<PlayerObject>();
     private static List<PlayerObject> npcPlayerList = new List<PlayerObject>();
+    private const float MAX_NPC_COUNT = 10;
 
-
-    public static void SetOwnerPlayerObject(PlayerObject po) {
-        Debug.Log("CombatManager :: SetOwnerPlayerObject");
-        ownerPlayerObject = po;
+    public static void ResetAll() {
+        allPlayerObjectList.Clear();
+        realPlayerList.Clear();
+        npcPlayerList.Clear();
     }
     
     public static void GenerateNpc(int count=1) {
+        if (npcPlayerList.Count >= MAX_NPC_COUNT) {
+            return;
+        }
         for (int i = 0; i < count; i++) {
             var resKey = StartMain.GetRandomResKey();
             var data = new PlayerData() {m_playerName = "NPC", m_resKey = resKey};
@@ -27,16 +30,16 @@ public class CombatManager {
     }
     
     public static void GeneratePlayerObject(Player player, bool isNpc) {
-        Debug.Log("CombatManager :: GeneratePlayerObject Start");
+        // Debug.Log("CombatManager :: GeneratePlayerObject Start");
         player.InstantiateEntity(player.playerData, isNpc);
         var playerObj = player.playerObject;
         AddPlayerObject(playerObj);
 
-        Debug.Log("CombatManager :: GeneratePlayerObject End");
+        // Debug.Log("CombatManager :: GeneratePlayerObject End");
     }
     
     public static void AddPlayerObject(PlayerObject player) {
-        Debug.Log("Add Player :: "+(player.state.IsNpc ? "NPC" : "REAL PLAYER"));
+        // Debug.Log("Add Player :: "+(player.state.IsNpc ? "NPC" : "REAL PLAYER"));
         if (allPlayerObjectList.Contains(player)) {
             return;
         }
@@ -113,9 +116,8 @@ public class CombatManager {
 
             if (CheckTargetInRange(attacker, target)) {
                 if (attacker.state.IsNpc == target.state.IsNpc) {
-                    int amount = target.playerScore;
-                    attacker.AddScore(amount);
-                    target.MinusScore(amount);
+                    attacker.AddScore(2);
+                    target.MinusScore(1);
                 }
                 else {
                     int amount = 1;

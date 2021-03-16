@@ -59,7 +59,7 @@ public partial class Player : IDisposable
 		entity = BoltNetwork.Instantiate(BoltPrefabs.PlayerObject, data, RandomPosition(isNpc), Quaternion.identity);
 
 		if (entity) {
-			Debug.Log("-----------------------Player :: SpawnPlayerObject");
+			// Debug.Log("-----------------------Player :: SpawnPlayerObject");
 			// entity.transform.position = RandomPosition(isNpc);
 			playerObject = entity.GetComponent<PlayerObject>();
 			playerObject.name = name;
@@ -110,7 +110,8 @@ partial class Player {
 	}
 
 	public static void CreateServerPlayer() {
-		var data = new PlayerData() {m_playerName = "ServerPlayer", m_resKey = "Enemy"};
+		string randSkin = StartMain.GetRandomResKey();
+		var data = new PlayerData() {m_playerName = NetworkInfo.HostName, m_resKey = randSkin};
 		ServerPlayer = new Player(data);
 		CombatManager.GeneratePlayerObject(Player.ServerPlayer, false);
 	}

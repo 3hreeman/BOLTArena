@@ -14,11 +14,11 @@ public class ClientCallbacks : Bolt.GlobalEventListener {
 
     public override void SceneLoadLocalDone(string scene, IProtocolToken token) {
         // Debug.Log("ClientCallbacks :: SceneLoadLocalDone");
-        GamePadController.instance.padObj.transform.SetParent(GameObject.Find("Canvas").transform);
+        GamePadController.instance.AttachToCanvas(GameObject.Find("Canvas").transform);
     }
 
     public override void ControlOfEntityGained(BoltEntity entity) {
-        Debug.Log("--------------------ClientCallbacks :: ControlOfEntityGained - "+entity.gameObject.name);
+        // Debug.Log("--------------------ClientCallbacks :: ControlOfEntityGained - "+entity.gameObject.name);
     }
     
     public override void Disconnected(BoltConnection connection) {

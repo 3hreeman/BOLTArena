@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Bolt;
@@ -17,6 +18,22 @@ public class ServerCallbacks : Bolt.GlobalEventListener {
 		if (ListenServer) {
 			Player.CreateServerPlayer();
 			CombatManager.GenerateNpc(1);
+		}
+	}
+
+	private const float GEN_INTERVAL = 1;
+	private float nextGenerateAt = 0;
+	private void FixedUpdate() {
+		if (nextGenerateAt <= BoltNetwork.ServerTime) {
+			nextGenerateAt = BoltNetwork.ServerTime + GEN_INTERVAL;
+			CombatManager.GenerateNpc(1);
+		}
+		CheckGameEnd();
+	}
+
+	void CheckGameEnd() {
+		if (NetworkInfo.IsExpired()) {
+			StageMain.StageEnd();
 		}
 	}
 
@@ -55,7 +72,6 @@ public class ServerCallbacks : Bolt.GlobalEventListener {
 	}
 
 	public override void Connected(BoltConnection connection) {
-		BoltLog.Warn("Player Connected");
 
 		var playerToken = connection.ConnectToken as PlayerData;
 		string player_name = "CLIENT:" + connection.RemoteEndPoint.Port;
@@ -66,6 +82,7 @@ public class ServerCallbacks : Bolt.GlobalEventListener {
 		connection.UserData = new Player(playerToken);
 		connection.GetPlayer().connection = connection;
 		connection.GetPlayer().name = player_name;
+		BoltLog.Warn("Player Connected : "+player_name);
 
 		connection.SetStreamBandwidth(1024 * 1024);
 	}

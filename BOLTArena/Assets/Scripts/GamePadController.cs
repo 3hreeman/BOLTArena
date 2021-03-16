@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -33,14 +34,29 @@ public class GamePadController : MonoBehaviour, IBeginDragHandler, IDragHandler,
         instance = this;
         padObj = transform.parent.gameObject;
         rectTransform = GetComponent<RectTransform>();
-        stickRange = rectTransform.sizeDelta.x / 2;
         DontDestroyOnLoad(padObj);
+    }
+
+    public TextMeshProUGUI txtGameTime;
+    private void Update() {
+        if (BoltNetwork.IsConnected) {
+            txtGameTime.gameObject.SetActive(true);
+            txtGameTime.text = NetworkInfo.GetLeftTime().ToString();
+        }
+        else {
+            txtGameTime.gameObject.SetActive(false);
+        }
     }
 
     public Action actionForBtnA;
     public Action actionForBtnB;
 
+    public void AttachToCanvas(Transform canvas) {
+        padObj.transform.SetParent(canvas, false);
+        stickRange = rectTransform.sizeDelta.x / 2;
+    }
     public void RegisterBtnAction(Action act_a, Action act_b) {
+        stickRange = rectTransform.sizeDelta.x / 2;
         actionForBtnA = act_a;
         actionForBtnB = act_b;
     }

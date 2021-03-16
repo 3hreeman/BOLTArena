@@ -1,23 +1,27 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Bolt;
 using Bolt.Matchmaking;
 using Bolt.Photon;
+using TMPro;
 using UdpKit;
 using UdpKit.Platform.Photon;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using Debug = UnityEngine.Debug;
 using Random = System.Random;
 
 public class StartMain : Bolt.GlobalEventListener {
 	public static bool IsInit = false;
-	public static Dictionary<string, string> nameSkinDict = new Dictionary<string, string>() { {"Fighter", "Fighter"}, {"Halloween", "Halloween"}, {"Magician", "Magician"},
-		{"Aloha", "Aloha"}, {"Blossom", "Blossom"}, {"Choir", "Choir"}, {"Mechagic", "Mechagic"}, {"Pirate", "Pirate"}, {"Pharaoh", "Pharaoh"}, {"Sulbim", "Sulbim"}};
-	
 	private enum State {
+			Initializing,
+			InputName,
 			SelectMode,
-			SelectMap,
 			SelectRoom,
 			StartServer,
 			StartClient,
@@ -26,21 +30,31 @@ public class StartMain : Bolt.GlobalEventListener {
 
 	private Rect labelRoom = new Rect(0, 0, 140, 75);
 	private GUIStyle labelRoomStyle;
+	private State currentState = State.Initializing;
 
-	private State currentState;
-	private string map;
-
+	public GameObject nameInputObj;
+	public TMP_InputField nameInputField;
+	
 	void Awake() {
-		IsInit = true;
+		ScreenInfo.SetScreenSize();
+		Screen.SetResolution(ScreenInfo.referenceWidth, ScreenInfo.referenceHeight, true);
 		Application.targetFrameRate = 60;
 
 		labelRoomStyle = new GUIStyle() {
-			fontSize = 20,
+			fontSize = 25,
 			fontStyle = FontStyle.Bold,
 			normal = {
 				textColor = Color.white
 			}
 		};
+		
+		IsInit = true;
+	}
+
+	private IEnumerator Start() {
+		yield return StartCoroutine(NetworkInfo.GetIPAddress());
+		currentState = State.InputName;
+		nameInputObj.SetActive(true);
 	}
 
 	void OnGUI() {
@@ -62,7 +76,6 @@ public class StartMain : Bolt.GlobalEventListener {
 
 		switch (currentState) {
 			case State.SelectMode: State_SelectMode(); break;
-			case State.SelectMap: State_SelectMap(); break;
 			case State.SelectRoom: State_SelectRoom(); break;
 			case State.StartClient: State_StartClient(); break;
 			case State.StartServer: State_StartServer(); break;
@@ -71,6 +84,19 @@ public class StartMain : Bolt.GlobalEventListener {
 		GUILayout.EndArea();
 	}
 
+	public void EnterPlayerName() {
+		string data = nameInputField.text;
+		if (String.IsNullOrEmpty(data) == false) {
+			NetworkInfo.SetHostName(data);
+		}
+		else {
+			data = "DEFAULT_PLAYER_" + UnityEngine.Random.Range(1000, 9999);
+			NetworkInfo.SetHostName(data);
+		}
+		currentState = State.SelectMode;
+		nameInputObj.SetActive(false);
+	}
+	
 	void State_SelectRoom() {
 		GUI.Label(labelRoom, "Looking for rooms:", labelRoomStyle);
 
@@ -86,9 +112,9 @@ public class StartMain : Bolt.GlobalEventListener {
 					var label = string.Format("Join: {0} | {1}/{2}", matchName, photonSession.ConnectionsCurrent, photonSession.ConnectionsMax);
 
 					if (ExpandButton(label)) {
-						int idx = UnityEngine.Random.Range(0, nameSkinDict.Count);
-						var data = nameSkinDict.ToList()[idx];
-						BoltMatchmaking.JoinSession(photonSession, new PlayerData() { m_playerName =  data.Key, m_resKey = data.Value });
+						int idx = UnityEngine.Random.Range(0, NetworkInfo.nameSkinDict.Count);
+						var data = NetworkInfo.nameSkinDict.ToList()[idx];
+						BoltMatchmaking.JoinSession(photonSession, new PlayerData() { m_playerName = NetworkInfo.HostName, m_resKey = data.Value });
 						currentState = State.Started;
 					}
 				}
@@ -99,33 +125,23 @@ public class StartMain : Bolt.GlobalEventListener {
 	}
 
 	public static string GetRandomResKey() {
-		int idx = UnityEngine.Random.Range(0, nameSkinDict.Count);
-		return nameSkinDict.ToList()[idx].Value;
+		int idx = UnityEngine.Random.Range(0, NetworkInfo.nameSkinDict.Count);
+		return NetworkInfo.nameSkinDict.ToList()[idx].Value;
 	}
+	
+	bool ExpandButton(string text) {
+		return GUILayout.Button(text, GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true));
+	}
+	
 	void State_SelectMode() {
 		if (ExpandButton("Server")) {
-			currentState = State.SelectMap;
+			State_StartServer();
 		}
 		if (ExpandButton("Client")) {
 			currentState = State.StartClient;
 		}
 	}
-
-	void State_SelectMap() {
-		GUILayout.BeginVertical();
-
-		foreach (string value in BoltScenes.AllScenes) {
-			if (SceneManager.GetActiveScene().name != value) {
-				if (ExpandButton(value)) {
-					map = value;
-					currentState = State.StartServer;
-				}
-			}
-		}
-
-		GUILayout.EndVertical();
-	}
-
+	
 	void State_StartServer() {
 		BoltLauncher.StartServer();
 		currentState = State.Started;
@@ -145,11 +161,11 @@ public class StartMain : Bolt.GlobalEventListener {
 		if (BoltNetwork.IsServer)
 		{
 			var id = Guid.NewGuid().ToString().Split('-')[0];
-			var matchName = string.Format("{0} - {1}", id, map);
+			var matchName = NetworkInfo.GetDefaultMatchName();
 
 			BoltMatchmaking.CreateSession(
 				sessionID: matchName,
-				sceneToLoad: map
+				sceneToLoad: NetworkInfo.sceneName
 			);
 		}
 	}
@@ -158,10 +174,6 @@ public class StartMain : Bolt.GlobalEventListener {
 		registerDoneCallback(() => {
 			currentState = State.SelectMode;
 		});
-	}
-
-	bool ExpandButton(string text) {
-		return GUILayout.Button(text, GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true));
 	}
 
 	public override void SessionListUpdated(Map<Guid, UdpSession> sessionList) {

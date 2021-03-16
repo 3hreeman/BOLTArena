@@ -98,7 +98,7 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
     }
 
     private void Start() {
-        Debug.Log("--------------------PlayerObject :: Start() - "+gameObject.name+ " :: "+state.IsNpc.ToString());
+        // Debug.Log("--------------------PlayerObject :: Start() - "+gameObject.name+ " :: "+state.IsNpc.ToString());
 
         if (BoltNetwork.IsServer) {
             if (this == Player.ServerPlayer.playerObject) {
@@ -119,7 +119,7 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
     }
 
     public override void Attached() {
-        Debug.Log("--------------------PlayerObject :: Attached - "+gameObject.name+ " :: "+state.IsNpc.ToString());
+        // Debug.Log("--------------------PlayerObject :: Attached - "+gameObject.name+ " :: "+state.IsNpc.ToString());
         
         //Awake - Attached - Start 순으로 처리됨
         //최초 state동기화는 Start에서 처리하는게 맞음
