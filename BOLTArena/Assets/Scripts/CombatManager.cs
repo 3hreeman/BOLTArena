@@ -9,7 +9,7 @@ public class CombatManager {
     static List<PlayerObject> allPlayerObjectList = new List<PlayerObject>();
     private static List<PlayerObject> realPlayerList = new List<PlayerObject>();
     private static List<PlayerObject> npcPlayerList = new List<PlayerObject>();
-    private const float MAX_NPC_COUNT = 10;
+    private const float MAX_NPC_COUNT = 30;
 
     public static void ResetAll() {
         allPlayerObjectList.Clear();

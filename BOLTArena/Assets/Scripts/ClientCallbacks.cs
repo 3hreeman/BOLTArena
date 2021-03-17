@@ -24,7 +24,7 @@ public class ClientCallbacks : Bolt.GlobalEventListener {
     public override void Disconnected(BoltConnection connection) {
         Debug.Log("ClientCallbacks :: Connection has Disconnected by "+connection.DisconnectReason);
         if (BoltNetwork.IsClient) {
-            SceneManager.LoadScene("Start");
+            StageMain.StageEnd();
         }
     }
 }

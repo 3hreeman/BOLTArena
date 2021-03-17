@@ -8,10 +8,7 @@ using UnityEngine.UIElements;
 
 public class StageMain : MonoBehaviour {
 
-    public static bool IsStageStarted = false;
-    public static bool IsStageEnd = false;
     private void Awake() {
-        IsStageEnd = false;
         if (ServerMain.HeadlessMode == true) {
             return;
         }
@@ -42,7 +39,7 @@ public class StageMain : MonoBehaviour {
         BoltNetwork.Shutdown();
         CombatManager.ResetAll();
         CombatDmgFontObject.ResetAll();
-        if (BoltNetwork.IsServer) {
+        if (BoltNetwork.IsServer && ServerMain.HeadlessMode) {
             SceneManager.LoadScene("ServerStart");
         }
         else {
