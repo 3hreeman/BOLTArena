@@ -1,0 +1,146 @@
+
+boss_daegolem_10047.png
+size: 964,300
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+char_eft/back_eft/orb/blur_glow
+  rotate: false
+  xy: 777, 14
+  size: 57, 57
+  orig: 57, 57
+  offset: 0, 0
+  index: -1
+char_eft/orb/blur_glow
+  rotate: false
+  xy: 777, 14
+  size: 57, 57
+  orig: 57, 57
+  offset: 0, 0
+  index: -1
+char_eft/back_eft/orb/dot_glow
+  rotate: false
+  xy: 156, 10
+  size: 47, 47
+  orig: 47, 47
+  offset: 0, 0
+  index: -1
+char_eft/orb/dot_glow
+  rotate: false
+  xy: 156, 10
+  size: 47, 47
+  orig: 47, 47
+  offset: 0, 0
+  index: -1
+char_eft/orb/ball_02
+  rotate: false
+  xy: 706, 2
+  size: 69, 69
+  orig: 69, 69
+  offset: 0, 0
+  index: -1
+char_eft/orb/half_orb
+  rotate: true
+  xy: 904, 150
+  size: 97, 53
+  orig: 97, 53
+  offset: 0, 0
+  index: -1
+mon_img/human/golem/10073/body
+  rotate: false
+  xy: 706, 73
+  size: 170, 75
+  orig: 220, 125
+  offset: 25, 25
+  index: -1
+mon_img/human/golem/10073/chest
+  rotate: false
+  xy: 2, 59
+  size: 278, 237
+  orig: 328, 287
+  offset: 25, 25
+  index: -1
+mon_img/human/golem/10073/emo_01
+  rotate: true
+  xy: 440, 20
+  size: 128, 144
+  orig: 178, 194
+  offset: 25, 25
+  index: -1
+mon_img/human/golem/10073/emo_02
+  rotate: false
+  xy: 440, 150
+  size: 128, 146
+  orig: 178, 196
+  offset: 25, 25
+  index: -1
+mon_img/human/golem/10073/head
+  rotate: false
+  xy: 586, 19
+  size: 118, 129
+  orig: 168, 179
+  offset: 25, 25
+  index: -1
+mon_img/human/golem/10073/hip
+  rotate: false
+  xy: 2, 20
+  size: 152, 37
+  orig: 202, 87
+  offset: 25, 25
+  index: -1
+mon_img/human/golem/10073/l_arm
+  rotate: false
+  xy: 282, 152
+  size: 143, 144
+  orig: 193, 194
+  offset: 25, 25
+  index: -1
+mon_img/human/golem/10073/l_elbow
+  rotate: false
+  xy: 810, 150
+  size: 92, 100
+  orig: 142, 150
+  offset: 25, 25
+  index: -1
+mon_img/human/golem/10073/l_hand
+  rotate: true
+  xy: 282, 20
+  size: 130, 156
+  orig: 180, 206
+  offset: 25, 25
+  index: -1
+mon_img/human/golem/10073/l_leg
+  rotate: false
+  xy: 836, 13
+  size: 46, 41
+  orig: 96, 91
+  offset: 25, 25
+  index: -1
+mon_img/human/golem/10073/r_arm
+  rotate: false
+  xy: 570, 150
+  size: 128, 134
+  orig: 178, 184
+  offset: 25, 25
+  index: -1
+mon_img/human/golem/10073/r_elbow
+  rotate: true
+  xy: 878, 56
+  size: 92, 83
+  orig: 142, 133
+  offset: 25, 25
+  index: -1
+mon_img/human/golem/10073/r_hand
+  rotate: false
+  xy: 700, 150
+  size: 108, 134
+  orig: 158, 184
+  offset: 25, 25
+  index: -1
+mon_img/human/golem/10073/r_leg
+  rotate: false
+  xy: 205, 16
+  size: 47, 41
+  orig: 97, 91
+  offset: 25, 25
+  index: -1

@@ -1,0 +1,174 @@
+
+51301.png
+size: 200,596
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+char_eft/back_eft/orb/blur_glow
+  rotate: false
+  xy: 104, 301
+  size: 57, 57
+  orig: 57, 57
+  offset: 0, 0
+  index: -1
+char_eft/orb/blur_glow
+  rotate: false
+  xy: 104, 301
+  size: 57, 57
+  orig: 57, 57
+  offset: 0, 0
+  index: -1
+char_eft/back_eft/orb/dot_glow
+  rotate: false
+  xy: 145, 143
+  size: 47, 47
+  orig: 47, 47
+  offset: 0, 0
+  index: -1
+char_eft/orb/dot_glow
+  rotate: false
+  xy: 145, 143
+  size: 47, 47
+  orig: 47, 47
+  offset: 0, 0
+  index: -1
+char_eft/orb/ball_02
+  rotate: false
+  xy: 90, 3
+  size: 69, 69
+  orig: 69, 69
+  offset: 0, 0
+  index: -1
+char_eft/orb/half_orb
+  rotate: true
+  xy: 90, 74
+  size: 97, 53
+  orig: 97, 53
+  offset: 0, 0
+  index: -1
+char_img/71301/z00
+  rotate: false
+  xy: 2, 378
+  size: 65, 216
+  orig: 105, 256
+  offset: 20, 20
+  index: -1
+char_img/mix/h5102/acc01
+  rotate: true
+  xy: 2, 92
+  size: 79, 83
+  orig: 79, 83
+  offset: 0, 0
+  index: -1
+char_img/mix/h5102/acc02
+  rotate: false
+  xy: 168, 370
+  size: 21, 17
+  orig: 71, 67
+  offset: 25, 25
+  index: -1
+char_img/mix/h5102/acc03
+  rotate: true
+  xy: 163, 310
+  size: 48, 19
+  orig: 98, 69
+  offset: 25, 25
+  index: -1
+char_img/mix/h5102/body
+  rotate: true
+  xy: 2, 173
+  size: 88, 96
+  orig: 100, 104
+  offset: 6, 4
+  index: -1
+char_img/mix/h5102/emo_01
+  rotate: true
+  xy: 165, 196
+  size: 67, 30
+  orig: 117, 80
+  offset: 25, 25
+  index: -1
+char_img/mix/h5102/emo_02
+  rotate: true
+  xy: 161, 73
+  size: 68, 32
+  orig: 118, 82
+  offset: 25, 25
+  index: -1
+char_img/mix/h5102/emo_03
+  rotate: true
+  xy: 168, 389
+  size: 64, 28
+  orig: 114, 78
+  offset: 25, 25
+  index: -1
+char_img/mix/h5102/emo_04
+  rotate: false
+  xy: 104, 265
+  size: 69, 34
+  orig: 119, 84
+  offset: 25, 25
+  index: -1
+char_img/mix/h5102/emo_05
+  rotate: true
+  xy: 161, 5
+  size: 66, 33
+  orig: 116, 83
+  offset: 25, 25
+  index: -1
+char_img/mix/h5102/hair
+  rotate: true
+  xy: 2, 261
+  size: 115, 100
+  orig: 165, 150
+  offset: 25, 25
+  index: -1
+char_img/mix/h5102/hair_b
+  rotate: true
+  xy: 137, 455
+  size: 49, 48
+  orig: 99, 98
+  offset: 25, 25
+  index: -1
+char_img/mix/h5102/head
+  rotate: true
+  xy: 69, 510
+  size: 84, 71
+  orig: 134, 121
+  offset: 25, 25
+  index: -1
+char_img/mix/h5102/l_arm
+  rotate: true
+  xy: 2, 19
+  size: 71, 87
+  orig: 71, 87
+  offset: 0, 0
+  index: -1
+char_img/mix/h5102/l_leg
+  rotate: false
+  xy: 99, 192
+  size: 64, 69
+  orig: 64, 69
+  offset: 0, 0
+  index: -1
+char_img/mix/h5102/r_arm
+  rotate: false
+  xy: 69, 429
+  size: 68, 80
+  orig: 70, 82
+  offset: 1, 1
+  index: -1
+char_img/mix/h5102/r_leg
+  rotate: false
+  xy: 104, 360
+  size: 64, 69
+  orig: 64, 69
+  offset: 0, 0
+  index: -1
+weapon/01_sword/sword_31
+  rotate: false
+  xy: 142, 506
+  size: 31, 88
+  orig: 31, 88
+  offset: 0, 0
+  index: -1

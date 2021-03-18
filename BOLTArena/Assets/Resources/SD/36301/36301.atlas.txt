@@ -1,0 +1,146 @@
+
+36301.png
+size: 592,148
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+char_eft/back_eft/orb/blur_glow
+  rotate: false
+  xy: 2, 7
+  size: 57, 57
+  orig: 57, 57
+  offset: 0, 0
+  index: -1
+char_eft/orb/blur_glow
+  rotate: false
+  xy: 2, 7
+  size: 57, 57
+  orig: 57, 57
+  offset: 0, 0
+  index: -1
+char_eft/back_eft/orb/dot_glow
+  rotate: false
+  xy: 293, 8
+  size: 47, 47
+  orig: 47, 47
+  offset: 0, 0
+  index: -1
+char_eft/orb/dot_glow
+  rotate: false
+  xy: 293, 8
+  size: 47, 47
+  orig: 47, 47
+  offset: 0, 0
+  index: -1
+char_eft/orb/ball_02
+  rotate: false
+  xy: 486, 74
+  size: 69, 69
+  orig: 69, 69
+  offset: 0, 0
+  index: -1
+char_eft/orb/half_orb
+  rotate: true
+  xy: 363, 46
+  size: 97, 53
+  orig: 97, 53
+  offset: 0, 0
+  index: -1
+char_img/h001r/body
+  rotate: true
+  xy: 125, 57
+  size: 87, 94
+  orig: 97, 100
+  offset: 5, 3
+  index: -1
+char_img/h001r/emo_01
+  rotate: false
+  xy: 207, 16
+  size: 71, 34
+  orig: 121, 84
+  offset: 25, 25
+  index: -1
+char_img/h001r/emo_02
+  rotate: false
+  xy: 134, 19
+  size: 71, 36
+  orig: 121, 86
+  offset: 25, 25
+  index: -1
+char_img/h001r/emo_03
+  rotate: false
+  xy: 342, 11
+  size: 64, 33
+  orig: 114, 83
+  offset: 25, 25
+  index: -1
+char_img/h001r/emo_04
+  rotate: false
+  xy: 61, 16
+  size: 71, 39
+  orig: 121, 89
+  offset: 25, 25
+  index: -1
+char_img/h001r/emo_05
+  rotate: true
+  xy: 557, 77
+  size: 66, 30
+  orig: 116, 80
+  offset: 25, 25
+  index: -1
+char_img/h001r/hair
+  rotate: false
+  xy: 2, 66
+  size: 121, 77
+  orig: 171, 127
+  offset: 25, 25
+  index: -1
+char_img/h001r/head
+  rotate: true
+  xy: 219, 52
+  size: 91, 72
+  orig: 141, 122
+  offset: 25, 25
+  index: -1
+char_img/h001r/l_arm
+  rotate: false
+  xy: 293, 57
+  size: 69, 87
+  orig: 73, 87
+  offset: 2, 0
+  index: -1
+char_img/h001r/l_leg
+  rotate: true
+  xy: 486, 8
+  size: 65, 68
+  orig: 65, 68
+  offset: 0, 0
+  index: -1
+char_img/h001r/r_arm
+  rotate: false
+  xy: 418, 67
+  size: 67, 78
+  orig: 69, 82
+  offset: 1, 2
+  index: -1
+char_img/h001r/r_leg
+  rotate: true
+  xy: 418, 3
+  size: 64, 68
+  orig: 64, 68
+  offset: 0, 0
+  index: -1
+weapon/13_bow/arrow_00_normal
+  rotate: true
+  xy: 134, 5
+  size: 12, 49
+  orig: 12, 49
+  offset: 0, 0
+  index: -1
+weapon/3STAR/e_36301
+  rotate: false
+  xy: 557, 20
+  size: 25, 55
+  orig: 25, 55
+  offset: 0, 0
+  index: -1

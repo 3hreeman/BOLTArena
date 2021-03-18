@@ -215,6 +215,7 @@ MonoBehaviour:
   m_unitPanel: {fileID: 5040069283274170316}
   inputVector: {x: 0, y: 0}
   MAX_HP: 100
+  m_nextJumpTime: 0
   m_nextAtkTime: 0
   m_npcController: {fileID: 0}
   DirectionView: 0

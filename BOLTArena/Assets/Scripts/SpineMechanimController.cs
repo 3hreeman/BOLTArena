@@ -36,8 +36,8 @@ public class SpineMechanimController : MonoBehaviour {
         m_boneList = m_mechanim.skeleton.Bones.ToList();
         dir_scale = org_scale = Vector3.one;
         m_bound = m_meshRenderer.bounds.size;
-        m_mechanim.initialSkinName = m_resKey;
-        m_mechanim.Initialize(true);
+        // m_mechanim.initialSkinName = m_resKey;
+        // m_mechanim.Initialize(true);
         foreach (var bone in m_mechanim.skeleton.Bones) {
             m_boneList.Add(bone);
         }
@@ -108,7 +108,7 @@ public class SpineMechanimController : MonoBehaviour {
         hitCoroutine = null;
     }
 
-    void hit() {
+    void atk_eff() {
         if (hitAction != null) {
             hitAction();
         }

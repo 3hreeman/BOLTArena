@@ -30,7 +30,7 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
     public float MAX_HP = 100;
     float m_atkDmg = 10;
     float m_hp = 100;
-    float m_range = 1;
+    float m_range = 1.5f;
     int m_dir = 1;
 
     private string m_playerName;
@@ -67,7 +67,8 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
 
     private float stunEndAt = 0;
     private float STUN_TIME = 3;
-    
+
+    public float m_nextJumpTime = 0;
     public float m_nextAtkTime = 0;
     private float m_emojiTime = 0;
     private bool isMouseInput = false;
@@ -103,13 +104,13 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
         if (BoltNetwork.IsServer) {
             if (this == Player.ServerPlayer.playerObject) {
                 SetPad(GamePadController.instance);
-                GamePadController.instance.RegisterBtnAction(TryEmoji, TryAttack);
+                GamePadController.instance.RegisterBtnAction(TryAttack01, TryAttack02);
             }   
         }
         else if (BoltNetwork.IsClient) {
             if (entity.HasControl) {
                 SetPad(GamePadController.instance);
-                GamePadController.instance.RegisterBtnAction(TryEmoji, TryAttack);
+                GamePadController.instance.RegisterBtnAction(TryAttack01, TryAttack02);
             }
 
             if (state.IsNpc == false) {
@@ -185,10 +186,10 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
-            TryAttack();
+            TryAttack01();
         }
         if (Input.GetKeyDown(KeyCode.Alpha2)) {
-           TryEmoji();
+           TryAttack02();
         }
         
         if (Input.GetMouseButton(1)) {
@@ -213,7 +214,7 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
         }
         
         if (Input.GetKey(KeyCode.Space)) {
-            SetAttack(true);
+            TryJump();
         }
         else {
             SetAttack(false);
@@ -233,21 +234,31 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
         isAttack = flag;
     }
 
-    public void TryEmoji() {
-        if (m_emojiTime < BoltNetwork.ServerTime) {
-            m_emojiTime = BoltNetwork.ServerTime + ATK_COOLTIME;
-            var eventEmoji = EventPlayerEmoji.Create(entity, EntityTargets.Everyone);
-            eventEmoji.Send();
+    public void TryJump() {
+        if (m_nextJumpTime < BoltNetwork.ServerTime) {
+            m_nextJumpTime = BoltNetwork.ServerTime + 1;
+            SendAnimEvent("jump");
+        }
+    }
+    public void TryAttack01() {
+        if (m_nextAtkTime < BoltNetwork.ServerTime) {
+            m_nextAtkTime = BoltNetwork.ServerTime + ATK_COOLTIME;
+            SendAnimEvent("atk_01");
         }
     }
 
-    public void TryAttack() {
+    public void TryAttack02() {
         if (m_nextAtkTime < BoltNetwork.ServerTime) {
             m_nextAtkTime = BoltNetwork.ServerTime + ATK_COOLTIME;
-            var eventAtk = EventPlayerAttack.Create(entity, EntityTargets.Everyone);
-            eventAtk.Send();
+            SendAnimEvent("atk_02");
         }
     }
+
+    void SendAnimEvent(string key) {
+        var eventAnim = EventPlayerAnim.Create(entity, EntityTargets.Everyone);
+        eventAnim.animKey = key;
+        eventAnim.Send();
+    } 
     
     public override void SimulateOwner() {
         CheckDeadUnitRevive();
@@ -290,10 +301,10 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
 
                 m_charController.Move(MOVE_SPD * cmd.Input.inputVector * BoltNetwork.FrameDeltaTime);
                 if (cmd.Input.inputVector != Vector3.zero) {
-                    state.move = true;
+                    state.run = true;
                 }
                 else {
-                    state.move = false;
+                    state.run = false;
                 }
 
                 if (cmd.Input.attack) {
@@ -305,7 +316,7 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
 
     void UpdateAttack(PlayerCommand cmd) {
         if (m_nextAtkTime <= BoltNetwork.ServerTime) { 
-            state.attack();
+            state.atk_01();
             m_nextAtkTime = BoltNetwork.ServerTime + ATK_COOLTIME;
         }
     }
@@ -351,13 +362,14 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
     void SetAlive(bool isAlive) {
         if (isAlive) {
             state.Hp = MAX_HP;
-            state.damage = false;
+            // state.stun();
+            SendAnimEvent("stun");
             state.IsDead = false;
         }
         else {
             state.Hp = 0;
             reviveAt = BoltNetwork.ServerTime + reviveInterval;
-            state.damage = true;
+            state.stun_end();
             state.IsDead = true;
         }
     }
@@ -381,16 +393,8 @@ public class PlayerObject : EntityEventListener<IPlayerState> {
         m_anim.SetTrigger("hit_"+idx);
     }
 
-    public override void OnEvent(TestEventPlayerBlink evnt) {
-        m_spine.PlayHitEffect();
-    }
-
-    public override void OnEvent(EventPlayerAttack evnt) {
-        m_spine.PlayAnimTrigger("attack");
-    }
-    
-    public override void OnEvent(EventPlayerEmoji evnt) {
-        m_spine.PlayAnimTrigger("victory");
+    public override void OnEvent(EventPlayerAnim evnt) {
+        m_spine.PlayAnimTrigger(evnt.animKey);
     }
 }
 
